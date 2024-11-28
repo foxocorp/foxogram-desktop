@@ -1,0 +1,98 @@
+cmake_minimum_required(VERSION 3.14)
+project(foxogram
+        VERSION 1.0.0
+        DESCRIPTION "Desktop client for foxogram"
+        LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 17)
+
+if(NOT DEFINED CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
+    set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+    set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
+endif()
+
+find_package(Qt6 6.8.0 COMPONENTS Core Gui  Widgets)
+
+if( NOT Qt6_FOUND )
+
+    set( CMAKE_GENERATOR "Ninja" CACHE STRING "CMake generator" FORCE )
+
+    message( STATUS "Qt 6.8.0 not found. Downloading and configuring Qt..." )
+
+    set( QT_VERSION "6.8.0" )
+    set( QT_ARCHIVE_URL "https://download.qt.io/official_releases/qt/6.8/${QT_VERSION}/submodules/qtbase-everywhere-src-${QT_VERSION}.tar.xz" )
+    set( QT_ARCHIVE_FILE "${CMAKE_CURRENT_BINARY_DIR}/qtbase-everywhere-src-${QT_VERSION}.tar.xz" )
+    set( QT_SOURCE_DIR "${CMAKE_CURRENT_BINARY_DIR}/qtbase-everywhere-src-${QT_VERSION}" )
+    message( STATUS "Downloading the package from the official repository..." )
+    file( DOWNLOAD ${QT_ARCHIVE_URL} ${QT_ARCHIVE_FILE}
+            SHOW_PROGRESS
+            EXPECTED_HASH SHA256=1bad481710aa27f872de6c9f72651f89a6107f0077003d0ebfcc9fd15cba3c75)
+    message( STATUS "Unpacking the release..." )
+    execute_process( COMMAND ${CMAKE_COMMAND} -E tar xvf ${QT_ARCHIVE_FILE}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+            OUTPUT_QUIET
+    )
+
+    set( QT_BUILD_DIR "${CMAKE_CURRENT_BINARY_DIR}/qt-build" )
+    file( MAKE_DIRECTORY ${QT_BUILD_DIR} )
+    message( STATUS "Configuring..." )
+    execute_process( COMMAND ${QT_SOURCE_DIR}/configure -prefix ${QT_BUILD_DIR}
+            WORKING_DIRECTORY ${QT_BUILD_DIR} )
+
+    if( DEFINED ENV{NUMBER_OF_PROCESSORS} )
+        set( JOBS_OPTION "-j$ENV{NUMBER_OF_PROCESSORS}" )
+    elseif( DEFINED ENV{PROCESSOR_COUNT} )
+        set( JOBS_OPTION "-j$ENV{PROCESSOR_COUNT}" )
+    else()
+        set( JOBS_OPTION "" )
+    endif()
+
+    if( JOBS_OPTION )
+        message( STATUS "Compiling with parallelization..." )
+        execute_process( COMMAND ninja ${JOBS_OPTION}
+                WORKING_DIRECTORY ${QT_BUILD_DIR} )
+    else()
+        message( STATUS "Compiling without parallelization..." )
+        execute_process( COMMAND ninja
+                WORKING_DIRECTORY ${QT_BUILD_DIR} )
+    endif()
+
+    set( ENV{QTDIR} ${QT_BUILD_DIR} )
+    set( ENV{PATH} ${QT_BUILD_DIR}/bin:$ENV{PATH})
+
+else()
+    message( STATUS "Qt 6.8.0 found in the system." )
+endif()
+
+qt_standard_project_setup()
+qt_add_executable(foxogram)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
+include(FetchContent)
+FetchContent_Declare(foxogram_lib GIT_REPOSITORY https://github.com/Foxocorp/foxogram-lib
+        GIT_TAG v0.1.0
+)
+FetchContent_MakeAvailable(foxogram_lib)
+target_link_libraries(foxogram PUBLIC foxogram_lib
+        Qt::Core
+        Qt::Gui
+        Qt::Widgets
+)
+target_include_directories(foxogram_lib PUBLIC FOXOGRAM_LIB_INCLUDE_DIRS)
+
+set(sources
+        src/FoxogramLogin.ui
+        src/main.cpp
+)
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${sources})
+
+include(CMakePackageConfigHelpers)
+
+target_sources(foxogram PRIVATE ${sources})
+
+set_target_properties(foxogram PROPERTIES
+        SOVERSION ${PROJECT_VERSION_MAJOR}
+        VERSION ${PROJECT_VERSION})
