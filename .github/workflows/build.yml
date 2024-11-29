@@ -21,7 +21,8 @@ jobs:
       - name: Build Foxogram
         run: |
           mkdir cmake-build
-          cmake --build cmake-build --install foxogram -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF
+          cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -B cmake-build
+          cmake --build cmake-build --target install
 
       - name: Archive Foxogram
         shell: pwsh
