@@ -10,7 +10,7 @@ if(NOT DEFINED CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
 endif()
 
-find_package(Qt6 6.8.0 COMPONENTS Core Gui Widgets)
+find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 
 qt_standard_project_setup()
 qt_add_executable(foxogram)
