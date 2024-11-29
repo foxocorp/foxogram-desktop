@@ -39,6 +39,10 @@ set(sources
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${sources})
 
+set_target_properties(foxogram PROPERTIES
+        MACOSX_BUNDLE TRUE
+)
+
 include(CMakePackageConfigHelpers)
 
 target_sources(foxogram PRIVATE ${sources})
