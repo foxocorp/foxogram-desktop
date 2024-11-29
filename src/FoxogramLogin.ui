@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Foxogram</string>
   </property>
   <widget class="QPushButton" name="loginButton">
    <property name="geometry">
@@ -22,8 +22,12 @@
      <height>48</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">Text-align: left;
+padding-left: 15;</string>
+   </property>
    <property name="text">
-    <string>Confirm</string>
+    <string>Log in</string>
    </property>
   </widget>
   <widget class="QLabel" name="loginLabel">
