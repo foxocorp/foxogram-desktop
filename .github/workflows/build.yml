@@ -51,6 +51,6 @@ jobs:
         with:
           tag_name: ${{ github.run_id }}
           files: |
-            foxogram-desktop-ubuntu-latest.zip
-            foxogram-desktop-macos-latest.zip
-            foxogram-desktop-windows-latest.zip
+            ubuntu-latest.zip
+            macos-latest.zip
+            windows-latest.zip
