@@ -50,10 +50,7 @@ jobs:
         uses: actions/download-artifact@v4
 
       - name: Create release
-        uses: softprops/action-gh-release@v2
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ github.run_id }}
-          files: |
-            /home/runner/work/foxogram-desktop/foxogram-desktop/ubuntu-latest.zip
-            /home/runner/work/foxogram-desktop/foxogram-desktop/macos-latest.zip
-            /home/runner/work/foxogram-desktop/foxogram-desktop/windows-latest.zip
+          tag: ${{ github.run_id }}
+          artifacts: "*-latest.zip"
