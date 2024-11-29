@@ -22,6 +22,7 @@ jobs:
         run: |
           mkdir cmake-build
           cmake --version
+          pwd
           tree
           cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -B cmake-build
           cmake --build cmake-build --target install
