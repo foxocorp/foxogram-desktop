@@ -13,40 +13,11 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label_6">
+  <widget class="QPushButton" name="loginButton">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>150</y>
-     <width>46</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Email</string>
-   </property>
-   <property name="wordWrap">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>233</y>
-     <width>85</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Password</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_14">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>327</y>
+     <x>775</x>
+     <y>514</y>
      <width>368</width>
      <height>48</height>
     </rect>
@@ -55,21 +26,11 @@
     <string>Confirm</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_4">
+  <widget class="QLabel" name="loginLabel">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>259</y>
-     <width>368</width>
-     <height>45</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>90</y>
+     <x>775</x>
+     <y>277</y>
      <width>119</width>
      <height>48</height>
     </rect>
@@ -82,21 +43,72 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>30</pointsize>
+     <pointsize>24</pointsize>
     </font>
    </property>
    <property name="text">
     <string>Log in</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit_3">
+  <widget class="QLineEdit" name="emailInput">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>176</y>
+     <x>775</x>
+     <y>363</y>
      <width>368</width>
      <height>45</height>
     </rect>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhEmailCharactersOnly</set>
+   </property>
+   <property name="placeholderText">
+    <string>floofer@coof.fox</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="passwordLabel">
+   <property name="geometry">
+    <rect>
+     <x>775</x>
+     <y>420</y>
+     <width>85</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Password</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="emailLabel">
+   <property name="geometry">
+    <rect>
+     <x>775</x>
+     <y>337</y>
+     <width>46</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Email</string>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="passwordInput">
+   <property name="geometry">
+    <rect>
+     <x>775</x>
+     <y>446</y>
+     <width>368</width>
+     <height>45</height>
+    </rect>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhSensitiveData</set>
+   </property>
+   <property name="placeholderText">
+    <string>your floof password :3</string>
    </property>
   </widget>
  </widget>
