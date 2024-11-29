@@ -22,15 +22,15 @@ jobs:
         run: |
           mkdir cmake-build
           cd cmake-build
-          cmake -B ../build ..
+          cmake --target install -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX="../foxogram" --target install
 
       - name: Archive Foxogram
         shell: pwsh
         run: |
           if ($env:RUNNER_OS -eq "Windows") {
-            7z a foxogram-desktop-${{ matrix.os }}.zip build
+            7z a foxogram-desktop-${{ matrix.os }}.zip foxogram
           } else {
-            zip -r foxogram-desktop-${{ matrix.os }}.zip build
+            zip -r foxogram-desktop-${{ matrix.os }}.zip foxogram
           }
 
       - name: Upload artifact
