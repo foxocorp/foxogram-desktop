@@ -31,16 +31,16 @@ jobs:
         shell: pwsh
         run: |
           if ($env:RUNNER_OS -eq "Windows") {
-            7z a foxogram-desktop-${{ matrix.os }}.zip cmake-build
+            7z a ${{ matrix.os }}.zip foxogram
           } else {
-            zip -r foxogram-desktop-${{ matrix.os }}.zip cmake-build
+            zip -r ${{ matrix.os }}.zip foxogram
           }
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.os }}.zip
-          path: foxogram-desktop-${{ matrix.os }}.zip
+          path: ${{ matrix.os }}.zip
 
   upload:
     needs: build
@@ -50,6 +50,9 @@ jobs:
 
       - name: Download artifact
         uses: actions/download-artifact@v4
+
+      - name: List files
+        run: ls -la
 
       - name: Create release
         uses: softprops/action-gh-release@v2
