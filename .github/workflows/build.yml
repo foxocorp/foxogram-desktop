@@ -1,0 +1,52 @@
+name: Build Foxogram Desktop
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v6.8.0
+
+      - name: Build Foxogram
+        run: |
+          mkdir cmake-build
+          cd cmake-build
+          cmake -B ../build ..
+
+      - name: Archive Foxogram
+        shell: pwsh
+        run: |
+          if ($env:RUNNER_OS -eq "Windows") {
+            7z a foxogram-desktop-${{ matrix.os }}.zip build
+          } else {
+            zip -r foxogram-desktop-${{ matrix.os }}.zip build
+          }
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.os }}
+          path: foxogram-desktop-${{ matrix.os }}.zip
+
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+
+      - name: Create release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            foxogram-desktop-ubuntu-latest.zip
+            foxogram-desktop-macos-latest.zip
+            foxogram-desktop-windows-latest.zip
