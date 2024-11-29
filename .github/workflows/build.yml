@@ -4,6 +4,9 @@ on:
   push:
     branches: [ "main" ]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     strategy:
@@ -51,6 +54,6 @@ jobs:
         with:
           tag_name: ${{ github.run_id }}
           files: |
-            ubuntu-latest.zip
-            macos-latest.zip
-            windows-latest.zip
+            /home/runner/work/foxogram-desktop/foxogram-desktop/ubuntu-latest.zip
+            /home/runner/work/foxogram-desktop/foxogram-desktop/macos-latest.zip
+            /home/runner/work/foxogram-desktop/foxogram-desktop/windows-latest.zip
