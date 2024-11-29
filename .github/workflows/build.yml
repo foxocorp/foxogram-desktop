@@ -49,6 +49,7 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.run_id }}
           files: |
             foxogram-desktop-ubuntu-latest.zip
             foxogram-desktop-macos-latest.zip
