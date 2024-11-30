@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
-    <height>1080</height>
+    <width>1280</width>
+    <height>960</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>500</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Foxogram</string>
@@ -22,9 +28,15 @@
      <height>48</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">Text-align: left;
-padding-left: 15;</string>
+padding-left: 15;
+</string>
    </property>
    <property name="text">
     <string>Log in</string>
@@ -47,11 +59,17 @@ padding-left: 15;</string>
    </property>
    <property name="font">
     <font>
-     <pointsize>24</pointsize>
+     <pointsize>28</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="text">
     <string>Log in</string>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
    </property>
   </widget>
   <widget class="QLineEdit" name="emailInput">
@@ -62,6 +80,15 @@ padding-left: 15;</string>
      <width>368</width>
      <height>45</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding-left: 14;
+</string>
    </property>
    <property name="inputMethodHints">
     <set>Qt::ImhEmailCharactersOnly</set>
@@ -79,6 +106,11 @@ padding-left: 15;</string>
      <height>22</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
+   </property>
    <property name="text">
     <string>Password</string>
    </property>
@@ -91,6 +123,11 @@ padding-left: 15;</string>
      <width>46</width>
      <height>22</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>13</pointsize>
+    </font>
    </property>
    <property name="text">
     <string>Email</string>
@@ -107,6 +144,15 @@ padding-left: 15;</string>
      <width>368</width>
      <height>45</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">padding-left: 14;
+</string>
    </property>
    <property name="inputMethodHints">
     <set>Qt::ImhSensitiveData</set>

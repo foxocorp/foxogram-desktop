@@ -7,6 +7,8 @@ class FoxogramLoginForm : public QWidget {
     Q_OBJECT
 public:
     explicit FoxogramLoginForm(QWidget *parrent = nullptr);
+protected:
+    virtual void resizeEvent(QResizeEvent* event);
 private slots:
     void on_loginButton_clicked();
 private:
