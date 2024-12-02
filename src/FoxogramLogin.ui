@@ -23,7 +23,7 @@
    <item row="2" column="1">
     <spacer name="verticalSpacer">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -103,7 +103,7 @@
         <string notr="true">padding-left: 14;</string>
        </property>
        <property name="inputMethodHints">
-        <set>Qt::ImhEmailCharactersOnly</set>
+        <set>Qt::InputMethodHint::ImhEmailCharactersOnly</set>
        </property>
        <property name="placeholderText">
         <string>floofer@coof.fox</string>
@@ -146,7 +146,7 @@
 </string>
        </property>
        <property name="inputMethodHints">
-        <set>Qt::ImhSensitiveData</set>
+        <set>Qt::InputMethodHint::ImhSensitiveData</set>
        </property>
        <property name="placeholderText">
         <string>your floof password :3</string>
@@ -179,14 +179,14 @@ padding-left: 15;
      <item>
       <widget class="Line" name="line">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
       </widget>
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <property name="sizeConstraint">
-        <enum>QLayout::SetNoConstraint</enum>
+        <enum>QLayout::SizeConstraint::SetNoConstraint</enum>
        </property>
        <item>
         <widget class="QPushButton" name="pushButton">
@@ -307,12 +307,12 @@ padding-left: 15;
      <item>
       <widget class="Line" name="line_2">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="loginButton_3">
+      <widget class="QPushButton" name="resetPasswordButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -335,7 +335,7 @@ padding-left: 15;
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="loginButton_4">
+      <widget class="QPushButton" name="createAccountButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -362,7 +362,7 @@ padding-left: 15;
    <item row="0" column="1">
     <spacer name="verticalSpacer_2">
      <property name="orientation">
-      <enum>Qt::Vertical</enum>
+      <enum>Qt::Orientation::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -375,7 +375,7 @@ padding-left: 15;
    <item row="1" column="0">
     <spacer name="horizontalSpacer">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
@@ -388,7 +388,7 @@ padding-left: 15;
    <item row="1" column="2">
     <spacer name="horizontalSpacer_2">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Orientation::Horizontal</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>

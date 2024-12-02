@@ -15,3 +15,7 @@ void FoxogramLoginForm::on_loginButton_clicked() {
         std::cout << e.what() << std::endl;
     }
 }
+
+void FoxogramLoginForm::on_createAccountButton_clicked() {
+    emit createAccount();
+}
