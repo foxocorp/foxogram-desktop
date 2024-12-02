@@ -20,11 +20,11 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 include(FetchContent)
-FetchContent_Declare(foxogram_lib GIT_REPOSITORY https://github.com/Foxocorp/foxogram-lib
+FetchContent_Declare(libfoxogram GIT_REPOSITORY https://github.com/Foxocorp/foxogram-lib
         GIT_TAG main
 )
-FetchContent_MakeAvailable(foxogram_lib)
-target_link_libraries(foxogram PUBLIC foxogram_lib
+FetchContent_MakeAvailable(libfoxogram)
+target_link_libraries(foxogram PUBLIC libfoxogram
         Qt::Core
         Qt::Gui
         Qt::Widgets
@@ -32,9 +32,13 @@ target_link_libraries(foxogram PUBLIC foxogram_lib
 
 set(sources
         src/FoxogramLoginForm.h
+        src/FoxogramSignupForm.h
         src/FoxogramLoginForm.cpp
-        src/FoxogramLogin.ui
+        src/FoxogramSignupForm.cpp
         src/main.cpp
+        src/FoxogramSignup.ui
+        src/FoxogramLogin.ui
+
 )
 
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${sources})

@@ -1,7 +1,6 @@
 #include "FoxogramLoginForm.h"
 #include <iostream>
 #include <QMainWindow>
-#include <QResizeEvent>
 
 FoxogramLoginForm::FoxogramLoginForm(QWidget *parent)
         : QWidget(parent) {

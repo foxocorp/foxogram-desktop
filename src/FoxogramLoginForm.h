@@ -11,5 +11,5 @@ private slots:
     void on_loginButton_clicked();
 private:
     foxogram::Me* me;
-    Ui::Form ui;
+    Ui::FoxogramLoginUi ui;
 };
