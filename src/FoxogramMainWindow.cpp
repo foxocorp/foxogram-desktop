@@ -1,10 +1,6 @@
 #include "FoxogramMainWindow.h"
 #include <iostream>
 
-FoxogramMainWindow::~FoxogramMainWindow() {
-
-}
-
 void FoxogramMainWindow::switchToSignupForm() {
     this->centralWidget()->setParent(nullptr);
     this->setCentralWidget(signupForm);
@@ -16,8 +12,9 @@ void FoxogramMainWindow::switchToLoginForm() {
 }
 
 FoxogramMainWindow::FoxogramMainWindow(QWidget *parrent, Qt::WindowFlags flags) : QMainWindow(parrent, flags) {
-    this->loginForm = new FoxogramLoginForm();
-    this->signupForm = new FoxogramSignupForm();
+    this->setStyleSheet("background-color: #000000");
+    this->loginForm = new FoxogramLoginForm(this);
+    this->signupForm = new FoxogramSignupForm(this);
     connect(loginForm, &FoxogramLoginForm::createAccount, this, &FoxogramMainWindow::switchToSignupForm);
     connect(signupForm, &FoxogramSignupForm::login, this, &FoxogramMainWindow::switchToLoginForm);
     this->setCentralWidget(signupForm);

@@ -13,5 +13,5 @@ private slots:
     void switchToLoginForm();
 public:
     explicit FoxogramMainWindow(QWidget* parrent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
-    ~FoxogramMainWindow();
+    ~FoxogramMainWindow() =  default;
 };

@@ -1,10 +1,11 @@
 #include "FoxogramLoginForm.h"
+#include "FoxogramMainWindow.h"
 #include <iostream>
 #include <QMainWindow>
 
-FoxogramLoginForm::FoxogramLoginForm(QWidget *parent)
-        : QWidget(parent) {
+FoxogramLoginForm::FoxogramLoginForm(FoxogramMainWindow *parent) : QWidget(nullptr) {
     ui.setupUi(this);
+    this->parent = parent;
 }
 
 void FoxogramLoginForm::on_loginButton_clicked() {

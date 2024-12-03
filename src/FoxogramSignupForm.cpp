@@ -1,8 +1,9 @@
 #include "FoxogramSignupForm.h"
+#include "FoxogramMainWindow.h"
 #include <iostream>
 #include <QMainWindow>
 
-FoxogramSignupForm::FoxogramSignupForm(QWidget *parrent) : QWidget(parrent) {
+FoxogramSignupForm::FoxogramSignupForm(FoxogramMainWindow *parrent) : QWidget(nullptr) {
     ui.setupUi(this);
     this->parrent = parrent;
 }
