@@ -12,7 +12,7 @@ void FoxogramMainWindow::switchToLoginForm() {
 }
 
 FoxogramMainWindow::FoxogramMainWindow(QWidget *parrent, Qt::WindowFlags flags) : QMainWindow(parrent, flags) {
-    this->setStyleSheet("background-color: #000000");
+    //this->setStyleSheet("background-color: #000000");
     this->loginForm = new FoxogramLoginForm(this);
     this->signupForm = new FoxogramSignupForm(this);
     connect(loginForm, &FoxogramLoginForm::createAccount, this, &FoxogramMainWindow::switchToSignupForm);

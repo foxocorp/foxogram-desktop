@@ -31,9 +31,11 @@ target_link_libraries(foxogram PUBLIC libfoxogram
 )
 
 set(sources
+        src/FoxogramIconButton.h
         src/FoxogramLoginForm.h
         src/FoxogramSignupForm.h
         src/FoxogramMainWindow.h
+        src/FoxogramIconButton.cpp
         src/FoxogramLoginForm.cpp
         src/FoxogramSignupForm.cpp
         src/FoxogramMainWindow.cpp
