@@ -1,8 +1,9 @@
 #include "FoxogramSignupForm.h"
 #include "FoxogramMainWindow.h"
 #include "FoxogramIconButton.h"
+#include "FoxogramModal.h"
+#include <QDialog>
 #include <iostream>
-#include <QMainWindow>
 
 FoxogramSignupForm::FoxogramSignupForm(FoxogramMainWindow* parent) : QWidget(nullptr) {
     ui.setupUi(this);
@@ -23,6 +24,8 @@ FoxogramSignupForm::FoxogramSignupForm(FoxogramMainWindow* parent) : QWidget(nul
 
 void FoxogramSignupForm::on_registerButton_clicked() {
     try {
+        auto m = new FoxogramModal(this);
+        m->show();
         this->me = new foxogram::Me(ui.usernameInput->text().toStdString(),ui.emailInput->text().toStdString(), ui.passwordInput->text().toStdString());
         std::cout << me->getUsername() << " " << me->getId() << std::endl;
     } catch (std::exception& e) {

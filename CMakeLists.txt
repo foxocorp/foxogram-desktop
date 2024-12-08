@@ -35,13 +35,16 @@ set(sources
         src/FoxogramLoginForm.h
         src/FoxogramSignupForm.h
         src/FoxogramMainWindow.h
+        src/FoxogramModal.h
         src/FoxogramIconButton.cpp
         src/FoxogramLoginForm.cpp
         src/FoxogramSignupForm.cpp
         src/FoxogramMainWindow.cpp
+        src/FoxogramModal.cpp
         src/main.cpp
         src/FoxogramSignup.ui
         src/FoxogramLogin.ui
+        src/FoxogramModal.ui
 
 )
 
