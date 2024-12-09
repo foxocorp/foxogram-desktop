@@ -1,7 +1,7 @@
 #include <FoxogramSignupForm.h>
 #include <FoxogramMainWindow.h>
 #include <FoxogramIconButton.h>
-#include "FoxogramModal.h"
+#include <FoxogramModal.h>
 #include <QDialog>
 #include <iostream>
 

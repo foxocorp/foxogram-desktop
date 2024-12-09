@@ -1,6 +1,6 @@
 #pragma once
 #include <QDialog>
-#include "ui_FoxogramModal.h"
+#include <ui_FoxogramModal.h>
 
 
 class FoxogramModal : public QWidget {

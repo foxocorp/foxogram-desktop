@@ -1,4 +1,4 @@
-#include "FoxogramModal.h"
+#include <FoxogramModal.h>
 
 FoxogramModal::FoxogramModal(QWidget *parent) :
         QWidget(parent), ui(new Ui::Form) {

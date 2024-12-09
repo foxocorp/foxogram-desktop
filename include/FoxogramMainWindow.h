@@ -1,8 +1,8 @@
 #pragma once
 
 #include <QMainWindow>
-#include "FoxogramLoginForm.h"
-#include "FoxogramSignupForm.h"
+#include <FoxogramLoginForm.h>
+#include <FoxogramSignupForm.h>
 
 class FoxogramMainWindow : public QMainWindow {
 private:
