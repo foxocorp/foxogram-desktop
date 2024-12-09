@@ -1,20 +1,20 @@
 #pragma once
 
-#include "ui_FoxogramLogin.h"
+#include "ui_FoxogramSignup.h"
 #include "FoxogramIconButton.h"
-#include <foxogram/Me.h>
+#include "foxogram/Me.h"
 
 class FoxogramMainWindow;
 
-class FoxogramLoginForm : public QWidget {
-    Q_OBJECT
+class FoxogramSignupForm : public QWidget {
+Q_OBJECT
 public:
-    explicit FoxogramLoginForm(FoxogramMainWindow *parrent);
+    explicit FoxogramSignupForm(FoxogramMainWindow *parrent);
 private slots:
+    void on_registerButton_clicked();
     void on_loginButton_clicked();
-    void on_createAccountButton_clicked();
     signals:
-    void createAccount();
+    void login();
 private:
     FoxogramIconButton* GoogleButton_1;
     FoxogramIconButton* GoogleButton_2;
@@ -22,8 +22,8 @@ private:
     FoxogramIconButton* GoogleButton_4;
     FoxogramIconButton* GoogleButton_5;
     FoxogramIconButton* GoogleButton_6;
-
-    FoxogramMainWindow* parent;
+    FoxogramMainWindow* parrent;
     foxogram::Me* me;
-    Ui::FoxogramLoginUi ui;
+    Ui::FoxogramSignupUi ui;
 };
+

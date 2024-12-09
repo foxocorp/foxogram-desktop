@@ -1,6 +1,6 @@
-#include "FoxogramLoginForm.h"
-#include "FoxogramMainWindow.h"
-#include "FoxogramIconButton.h"
+#include <FoxogramLoginForm.h>
+#include <FoxogramMainWindow.h>
+#include <FoxogramIconButton.h>
 #include <iostream>
 #include <QMainWindow>
 

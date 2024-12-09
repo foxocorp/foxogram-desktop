@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "FoxogramMainWindow.h"
+#include <FoxogramMainWindow.h>
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);

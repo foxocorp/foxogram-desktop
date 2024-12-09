@@ -1,4 +1,4 @@
-#include "FoxogramIconButton.h"
+#include <FoxogramIconButton.h>
 #include <QResizeEvent>
 
 void FoxogramIconButton::resizeEvent(QResizeEvent* event) {

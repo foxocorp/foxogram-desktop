@@ -1,4 +1,4 @@
-#include "FoxogramMainWindow.h"
+#include <FoxogramMainWindow.h>
 #include <iostream>
 
 void FoxogramMainWindow::switchToSignupForm() {
