@@ -16,13 +16,7 @@ private slots:
     signals:
     void login();
 private:
-    FoxogramIconButton* GoogleButton_1;
-    FoxogramIconButton* GoogleButton_2;
-    FoxogramIconButton* GoogleButton_3;
-    FoxogramIconButton* GoogleButton_4;
-    FoxogramIconButton* GoogleButton_5;
-    FoxogramIconButton* GoogleButton_6;
-    FoxogramMainWindow* parrent;
+    FoxogramMainWindow* parent;
     foxogram::Me* me;
     Ui::FoxogramSignupUi ui;
 };

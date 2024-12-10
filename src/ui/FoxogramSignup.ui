@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
-    <height>500</height>
+    <width>1100</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,8 +18,8 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>900</width>
-    <height>500</height>
+    <width>1100</width>
+    <height>650</height>
    </size>
   </property>
   <property name="baseSize">
@@ -35,19 +35,6 @@
    <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="260,560,260" columnstretch="775,370,775">
-   <item row="0" column="1">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Orientation::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="1" column="0">
     <spacer name="horizontalSpacer">
      <property name="orientation">
@@ -62,7 +49,7 @@
     </spacer>
    </item>
    <item row="1" column="1">
-    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="383,30,45,30,40">
+    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="383,30,40">
      <property name="spacing">
       <number>8</number>
      </property>
@@ -125,7 +112,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Username</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Username &lt;span style=&quot; color:#a53f3f;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>false</bool>
@@ -146,7 +133,9 @@
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">padding-left: 14;</string>
+              <string notr="true">padding-left: 14;
+border: 1px solid &quot;#606060&quot;;
+border-radius: 5;</string>
              </property>
              <property name="inputMethodHints">
               <set>Qt::InputMethodHint::ImhLatinOnly</set>
@@ -177,7 +166,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Email</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Email &lt;span style=&quot; color:#a53f3f;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>false</bool>
@@ -198,7 +187,9 @@
               </font>
              </property>
              <property name="styleSheet">
-              <string notr="true">padding-left: 14;</string>
+              <string notr="true">padding-left: 14;
+border: 1px solid &quot;#606060&quot;;
+border-radius: 5;</string>
              </property>
              <property name="inputMethodHints">
               <set>Qt::InputMethodHint::ImhEmailCharactersOnly</set>
@@ -229,7 +220,7 @@
               </font>
              </property>
              <property name="text">
-              <string>Password</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Password &lt;span style=&quot; color:#a53f3f;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -248,7 +239,8 @@
              </property>
              <property name="styleSheet">
               <string notr="true">padding-left: 14;
-</string>
+border: 1px solid &quot;#606060&quot;;
+border-radius: 5;</string>
              </property>
              <property name="inputMethodHints">
               <set>Qt::InputMethodHint::ImhSensitiveData</set>
@@ -276,9 +268,10 @@
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">Text-align: left;
+          <string notr="true">color: &quot;#000000&quot;;
+Text-align: left;
 padding-left: 15;
-</string>
+background-color: &quot;#ececec&quot;;</string>
          </property>
          <property name="text">
           <string>Register</string>
@@ -288,31 +281,42 @@ padding-left: 15;
       </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="Line" name="line">
-         <property name="orientation">
-          <enum>Qt::Orientation::Horizontal</enum>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <property name="sizeConstraint">
-        <enum>QLayout::SizeConstraint::SetNoConstraint</enum>
-       </property>
-      </layout>
-     </item>
-     <item>
       <layout class="QVBoxLayout" name="verticalLayout_9">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item>
         <widget class="Line" name="line_2">
          <property name="orientation">
           <enum>Qt::Orientation::Horizontal</enum>
          </property>
         </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Orientation::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>
@@ -332,10 +336,14 @@ padding-left: 15;
        <property name="styleSheet">
         <string notr="true">Text-align: left;
 padding-left: 15;
-</string>
+border: 1px solid &quot;#303030&quot;;
+border-radius: 5;</string>
        </property>
        <property name="text">
-        <string>Already have an account</string>
+        <string>Already have an account?</string>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -350,6 +358,19 @@ padding-left: 15;
       <size>
        <width>40</width>
        <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="1">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Orientation::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
       </size>
      </property>
     </spacer>
