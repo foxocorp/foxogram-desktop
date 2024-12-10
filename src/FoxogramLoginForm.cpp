@@ -1,13 +1,14 @@
 #include <FoxogramLoginForm.h>
 #include <FoxogramMainWindow.h>
-#include <FoxogramIconButton.h>
+#include <IconButton.h>
 #include <iostream>
 #include <QMainWindow>
 
 FoxogramLoginForm::FoxogramLoginForm(FoxogramMainWindow *parent) : QWidget(nullptr) {
     ui.setupUi(this);
     this->parent = parent;
-
+    ui.line_2->setFixedHeight(1);
+    ui.line_2->setStyleSheet("background-color: #606060");
 }
 
 void FoxogramLoginForm::on_loginButton_clicked() {

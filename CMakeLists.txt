@@ -30,16 +30,20 @@ target_link_libraries(foxogram PUBLIC libfoxogram
 )
 
 set(sources
-        include/FoxogramIconButton.h
+        include/IconButton.h
+        include/DigitInput.h
         include/FoxogramLoginForm.h
         include/FoxogramSignupForm.h
         include/FoxogramMainWindow.h
         include/FoxogramModal.h
-        src/FoxogramIconButton.cpp
+        include/FoxogramVerifyEmailModal.h
+        src/IconButton.cpp
+        src/DigitInput.cpp
         src/FoxogramLoginForm.cpp
         src/FoxogramSignupForm.cpp
         src/FoxogramMainWindow.cpp
         src/FoxogramModal.cpp
+        src/FoxogramVerifyEmailModal.cpp
         src/main.cpp
         src/ui/FoxogramSignup.ui
         src/ui/FoxogramLogin.ui

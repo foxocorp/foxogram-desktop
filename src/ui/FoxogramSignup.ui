@@ -81,7 +81,7 @@
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Sign Up</string>
+          <string>&lt;b&gt;Sign Up&lt;b&gt;</string>
          </property>
          <property name="scaledContents">
           <bool>false</bool>

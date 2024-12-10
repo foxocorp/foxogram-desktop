@@ -108,7 +108,7 @@
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Log in</string>
+          <string>&lt;b&gt;Log in&lt;b&gt;</string>
          </property>
          <property name="scaledContents">
           <bool>false</bool>

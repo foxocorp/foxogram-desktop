@@ -1,7 +1,7 @@
 #pragma once
 
 #include <ui_FoxogramSignup.h>
-#include <FoxogramIconButton.h>
+#include <IconButton.h>
 #include <foxogram/Me.h>
 
 class FoxogramMainWindow;

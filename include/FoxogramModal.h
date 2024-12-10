@@ -7,7 +7,8 @@ class FoxogramModal : public QWidget {
 Q_OBJECT
 public:
     explicit FoxogramModal(QWidget *parent = nullptr);
-private:
+
+protected:
     Ui::Form* ui;
 };
 
