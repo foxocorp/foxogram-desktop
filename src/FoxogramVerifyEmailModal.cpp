@@ -9,7 +9,10 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(QWidget* parent) : FoxogramMo
     layout.addWidget(&input4);
     layout.addWidget(&input5);
     layout.addWidget(&input6);
-    ui->verticalLayout->addLayout(&layout);
+    ui->verticalLayout_2->insertLayout(1, &layout);
+    ui->gridLayout->setRowStretch(0, 32);
+    ui->gridLayout->setRowStretch(1, 254);
+    ui->gridLayout->setRowStretch(2, 32);
     ui->label->setText("Check your email");
     ui->label_2->setText("fox@foxmail.com");
 }

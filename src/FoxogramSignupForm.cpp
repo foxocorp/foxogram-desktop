@@ -15,8 +15,9 @@ FoxogramSignupForm::FoxogramSignupForm(FoxogramMainWindow* parent) : QWidget(nul
 void FoxogramSignupForm::on_registerButton_clicked() {
     try {
         auto m = new FoxogramVerifyEmailModal(this);
-        m->show();
         m->setStyleSheet("background-color: #080808");
+        m->resize(416, 268);
+        m->show();
         this->me = new foxogram::Me(ui.usernameInput->text().toStdString(),ui.emailInput->text().toStdString(), ui.passwordInput->text().toStdString());
         std::cout << me->getUsername() << " " << me->getId() << std::endl;
     } catch (std::exception& e) {
