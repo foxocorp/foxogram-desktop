@@ -14,4 +14,5 @@ private:
     DigitInput input4;
     DigitInput input5;
     DigitInput input6;
+    QLabel label;
 };

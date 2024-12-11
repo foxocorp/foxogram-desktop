@@ -17,6 +17,18 @@
    <string notr="true"/>
   </property>
   <layout class="QGridLayout" name="gridLayout" rowstretch="37,119,37" columnstretch="31,354,31">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
    <property name="spacing">
     <number>0</number>
    </property>
