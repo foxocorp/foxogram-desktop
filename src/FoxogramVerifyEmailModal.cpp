@@ -1,6 +1,8 @@
 #include <FoxogramVerifyEmailModal.h>
+#include <QGraphicsBlurEffect>
 
 FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(QWidget* parent) : FoxogramModal(parent) {
+    resize(416, 283);
     ui->pushButton_2->deleteLater();
     ui->pushButton->setText("Confirm");
     layout.addWidget(&input);
@@ -20,7 +22,7 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(QWidget* parent) : FoxogramMo
     connect(&input5, &DigitInput::digitDeleted, &input4, &DigitInput::setFocused);
     connect(&input6, &DigitInput::digitDeleted, &input5, &DigitInput::setFocused);
     ui->verticalLayout_2->insertLayout(1, &layout);
-    label.setText("<html><head/><body><p><span style=\" color:#ececec;\">Didn't receive code? Send again</span></p></body></html>");
+    label.setText("Time until you can resend code");
     auto font = label.font();
     font.setPointSize(10);
     label.setFont(font);
@@ -33,4 +35,10 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(QWidget* parent) : FoxogramMo
     ui->gridLayout->setColumnStretch(2, 31);
     ui->label->setText("Check your email");
     ui->label_2->setText("fox@foxmail.com");
+    auto* p_blur = new QGraphicsBlurEffect;
+    this->setStyleSheet("background-color: #080808;");
+    setWindowOpacity(0.97);
+    p_blur->setBlurRadius(15);
+    p_blur->setBlurHints(QGraphicsBlurEffect::QualityHint);
+    parent->setGraphicsEffect(p_blur);
 }
