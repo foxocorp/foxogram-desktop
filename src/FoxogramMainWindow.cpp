@@ -19,3 +19,7 @@ FoxogramMainWindow::FoxogramMainWindow(QWidget *parrent, Qt::WindowFlags flags) 
     connect(signupForm, &FoxogramSignupForm::login, this, &FoxogramMainWindow::switchToLoginForm);
     this->setCentralWidget(signupForm);
 }
+
+void FoxogramMainWindow::moveEvent(QMoveEvent* event) {
+    emit moved(event);
+}

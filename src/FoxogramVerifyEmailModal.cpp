@@ -1,8 +1,12 @@
 #include <FoxogramVerifyEmailModal.h>
 #include <QGraphicsBlurEffect>
+#include <QMoveEvent>
+#include <iostream>
+#include <FoxogramSignupForm.h>
+#include <FoxogramMainWindow.h>
 
-FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(QWidget* parent) : FoxogramModal(parent) {
-    resize(416, 283);
+FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) : FoxogramModal(parent) {
+    resize(416, 263);
     ui->pushButton_2->deleteLater();
     ui->pushButton->setText("Confirm");
     layout.addWidget(&input);
@@ -26,6 +30,10 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(QWidget* parent) : FoxogramMo
     auto font = label.font();
     font.setPointSize(10);
     label.setFont(font);
+    label.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    label.setFlat(true);
+    label.setStyleSheet("Text-align: left");
+    label.setEnabled(false);
     ui->verticalLayout_2->addWidget(&label);
     ui->gridLayout->setRowStretch(0, 16);
     ui->gridLayout->setRowStretch(1, 204);
@@ -35,10 +43,19 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(QWidget* parent) : FoxogramMo
     ui->gridLayout->setColumnStretch(2, 31);
     ui->label->setText("Check your email");
     ui->label_2->setText("fox@foxmail.com");
-    auto* p_blur = new QGraphicsBlurEffect;
     this->setStyleSheet("background-color: #080808;");
     setWindowOpacity(0.97);
+    this->parent = parent;
+}
+
+void FoxogramVerifyEmailModal::parentMoved(QMoveEvent* event) {
+    move(floor(event->pos().x()+(parent->parent->size().width()-size().width())/2.0),
+         floor(event->pos().y()+(parent->parent->size().height()+23-size().height())/2.0));
+}
+
+void FoxogramVerifyEmailModal::showEvent(QShowEvent *event) {
+    auto* p_blur = new QGraphicsBlurEffect;
     p_blur->setBlurRadius(15);
-    p_blur->setBlurHints(QGraphicsBlurEffect::QualityHint);
+    p_blur->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
     parent->setGraphicsEffect(p_blur);
 }

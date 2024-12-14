@@ -5,7 +5,10 @@
 
 class FoxogramVerifyEmailModal : public FoxogramModal {
 public:
-    FoxogramVerifyEmailModal(QWidget* parent);
+    explicit FoxogramVerifyEmailModal(class FoxogramSignupForm* parent);
+    void showEvent(QShowEvent *event);
+public slots:
+    void parentMoved(QMoveEvent* event);
 private:
     QHBoxLayout layout;
     DigitInput input;
@@ -14,5 +17,6 @@ private:
     DigitInput input4;
     DigitInput input5;
     DigitInput input6;
-    QLabel label;
+    QPushButton label;
+    FoxogramSignupForm* parent;
 };
