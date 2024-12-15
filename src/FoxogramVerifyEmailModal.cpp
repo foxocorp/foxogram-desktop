@@ -51,6 +51,7 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) :
     this->parent = parent;
     label.setTextInteractionFlags(Qt::TextBrowserInteraction);
     connect(&label, &QLabel::linkActivated, this, &FoxogramVerifyEmailModal::linkClicked);
+    connect(ui->pushButton, &QPushButton::clicked, this, &FoxogramVerifyEmailModal::confirmClicked);
 }
 
 void FoxogramVerifyEmailModal::parentMoved(QMoveEvent* event) {
@@ -85,4 +86,14 @@ void FoxogramVerifyEmailModal::linkClicked() {
     timeLabel.show();
     time = QTime(0, 1, 0);
     timer.start(1000);
+}
+
+void FoxogramVerifyEmailModal::confirmClicked() {
+    auto code = input.text()+input2.text()+input3.text()+input4.text()+input5.text()+input6.text();
+    if (code.size() != 6) return;
+    try {
+        parent->me->verifyEmail(code.toStdString());
+    } catch(std::exception& e) {
+        std::cout << e.what() << std::endl;
+    }
 }

@@ -13,6 +13,7 @@ public slots:
     void parentMoved(QMoveEvent* event);
     void timerChanged();
     void linkClicked();
+    void confirmClicked();
 private:
     QTimer timer;
     QTime time;
