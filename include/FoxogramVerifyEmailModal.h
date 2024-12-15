@@ -12,6 +12,7 @@ public:
 public slots:
     void parentMoved(QMoveEvent* event);
     void timerChanged();
+    void linkClicked();
 private:
     QTimer timer;
     QTime time;

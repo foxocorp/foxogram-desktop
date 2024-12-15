@@ -23,8 +23,8 @@ FoxogramSignupForm::FoxogramSignupForm(FoxogramMainWindow* parent) : QWidget(nul
 
 void FoxogramSignupForm::on_registerButton_clicked() {
     try {
-        modal->show();
         this->me = new foxogram::Me(ui.usernameInput->text().toStdString(),ui.emailInput->text().toStdString(), ui.passwordInput->text().toStdString());
+        modal->show();
     } catch (std::exception& e) {
         std::cout << e.what() << std::endl;
     }

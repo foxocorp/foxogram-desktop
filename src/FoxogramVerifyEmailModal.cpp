@@ -49,6 +49,8 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) :
     this->setStyleSheet("background-color: #080808;");
     setWindowOpacity(0.97);
     this->parent = parent;
+    label.setTextInteractionFlags(Qt::TextBrowserInteraction);
+    connect(&label, &QLabel::linkActivated, this, &FoxogramVerifyEmailModal::linkClicked);
 }
 
 void FoxogramVerifyEmailModal::parentMoved(QMoveEvent* event) {
@@ -74,4 +76,13 @@ void FoxogramVerifyEmailModal::timerChanged() {
         timeLabel.hide();
         label.setText(R"(Didn't receive code? <a href=\"\" style="color:#4a89ff;" style="text-decoration:none">Send again</a>)");
     }
+}
+
+void FoxogramVerifyEmailModal::linkClicked() {
+    parent->me->resendEmail();
+    label.setText("Time until you can resend code");
+    timeLabel.setText("01:00");
+    timeLabel.show();
+    time = QTime(0, 1, 0);
+    timer.start(1000);
 }
