@@ -26,7 +26,7 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) :
     connect(&input5, &DigitInput::digitDeleted, &input4, &DigitInput::setFocused);
     connect(&input6, &DigitInput::digitDeleted, &input5, &DigitInput::setFocused);
     ui->verticalLayout_2->insertLayout(1, &layout);
-    label.setText("Time until you can resend code");
+    label.setText("Time until you can resend code 01:00");
     auto font = label.font();
     font.setPointSize(10);
     label.setFont(font);
@@ -58,4 +58,16 @@ void FoxogramVerifyEmailModal::showEvent(QShowEvent *event) {
     p_blur->setBlurRadius(15);
     p_blur->setBlurHints(QGraphicsBlurEffect::PerformanceHint);
     parent->setGraphicsEffect(p_blur);
+    time = QTime(0, 1, 0);
+    connect(&timer, &QTimer::timeout, this, &FoxogramVerifyEmailModal::timerChanged);
+    timer.start(1000);
+}
+
+void FoxogramVerifyEmailModal::timerChanged() {
+    if (!comparesEqual(time, QTime(0,0,0))) {
+        time = time.addSecs(-1);
+        label.setText("Time until you can resend code " + time.toString("mm:ss"));
+    } else {
+        label.setText("Didn't receive code? Send again");
+    }
 }

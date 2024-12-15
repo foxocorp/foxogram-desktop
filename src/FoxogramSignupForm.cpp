@@ -25,7 +25,6 @@ void FoxogramSignupForm::on_registerButton_clicked() {
     try {
         modal->show();
         this->me = new foxogram::Me(ui.usernameInput->text().toStdString(),ui.emailInput->text().toStdString(), ui.passwordInput->text().toStdString());
-        std::cout << me->getUsername() << " " << me->getId() << std::endl;
     } catch (std::exception& e) {
         std::cout << e.what() << std::endl;
     }

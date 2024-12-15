@@ -2,6 +2,8 @@
 
 #include <FoxogramModal.h>
 #include <DigitInput.h>
+#include <QTime>
+#include <QTimer>
 
 class FoxogramVerifyEmailModal : public FoxogramModal {
 public:
@@ -9,7 +11,10 @@ public:
     void showEvent(QShowEvent *event);
 public slots:
     void parentMoved(QMoveEvent* event);
+    void timerChanged();
 private:
+    QTimer timer;
+    QTime time;
     QHBoxLayout layout;
     DigitInput input;
     DigitInput input2;
