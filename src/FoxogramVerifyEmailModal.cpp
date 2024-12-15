@@ -26,15 +26,18 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) :
     connect(&input5, &DigitInput::digitDeleted, &input4, &DigitInput::setFocused);
     connect(&input6, &DigitInput::digitDeleted, &input5, &DigitInput::setFocused);
     ui->verticalLayout_2->insertLayout(1, &layout);
-    label.setText("Time until you can resend code 01:00");
+    label.setText("Time until you can resend code");
+    timeLabel.setText("<html><head/><body><p><span style=\" color:#838383;\">01:00</span></p></body></html>");
     auto font = label.font();
     font.setPointSize(10);
     label.setFont(font);
-    label.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    label.setFlat(true);
     label.setStyleSheet("Text-align: left");
-    label.setEnabled(false);
-    ui->verticalLayout_2->addWidget(&label);
+    label.setOpenExternalLinks(false);
+    auto layout2 = new QHBoxLayout();
+    layout2->addWidget(&label);
+    layout2->addItem(new QSpacerItem(20, 1, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum));
+    layout2->addWidget(&timeLabel);
+    ui->verticalLayout_2->addLayout(layout2);
     ui->gridLayout->setRowStretch(0, 16);
     ui->gridLayout->setRowStretch(1, 204);
     ui->gridLayout->setRowStretch(2, 16);
@@ -66,8 +69,9 @@ void FoxogramVerifyEmailModal::showEvent(QShowEvent *event) {
 void FoxogramVerifyEmailModal::timerChanged() {
     if (!comparesEqual(time, QTime(0,0,0))) {
         time = time.addSecs(-1);
-        label.setText("Time until you can resend code " + time.toString("mm:ss"));
+        timeLabel.setText("<html><head/><body><p><span style=\" color:#838383;\">" + time.toString("mm:ss") + "</span></p></body></html>");
     } else {
-        label.setText("Didn't receive code? Send again");
+        timeLabel.hide();
+        label.setText(R"(Didn't receive code? <a href=\"\" style="color:#4a89ff;" style="text-decoration:none">Send again</a>)");
     }
 }

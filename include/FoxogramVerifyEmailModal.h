@@ -22,6 +22,7 @@ private:
     DigitInput input4;
     DigitInput input5;
     DigitInput input6;
-    QPushButton label;
+    QLabel label;
+    QLabel timeLabel;
     FoxogramSignupForm* parent;
 };
