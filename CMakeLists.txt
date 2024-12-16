@@ -5,6 +5,9 @@ project(foxogram
         LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 
+set(CMAKE_AUTOUIC_SEARCH_PATHS src/ui)
+set(CMAKE_AUTOUIC ON)
+
 if(NOT DEFINED CMAKE_BUILD_TYPE AND NOT DEFINED CMAKE_CONFIGURATION_TYPES)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
     set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
@@ -15,29 +18,48 @@ find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 qt_standard_project_setup()
 qt_add_executable(foxogram)
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTORCC ON)
-
 include(FetchContent)
-FetchContent_Declare(foxogram_lib GIT_REPOSITORY https://github.com/Foxocorp/foxogram-lib
+FetchContent_Declare(libfoxogram GIT_REPOSITORY https://github.com/Foxocorp/foxogram-lib
         GIT_TAG main
 )
-FetchContent_MakeAvailable(foxogram_lib)
-target_link_libraries(foxogram PUBLIC foxogram_lib
+FetchContent_MakeAvailable(libfoxogram)
+target_link_libraries(foxogram PUBLIC libfoxogram
         Qt::Core
         Qt::Gui
         Qt::Widgets
 )
 
 set(sources
-        src/FoxogramLoginForm.h
+        include/IconButton.h
+        include/DigitInput.h
+        include/FoxogramLoginForm.h
+        include/FoxogramSignupForm.h
+        include/FoxogramMainWindow.h
+        include/FoxogramModal.h
+        include/FoxogramVerifyEmailModal.h
+        src/IconButton.cpp
+        src/DigitInput.cpp
         src/FoxogramLoginForm.cpp
-        src/FoxogramLogin.ui
+        src/FoxogramSignupForm.cpp
+        src/FoxogramMainWindow.cpp
+        src/FoxogramModal.cpp
+        src/FoxogramVerifyEmailModal.cpp
         src/main.cpp
-)
+        src/ui/FoxogramSignup.ui
+        src/ui/FoxogramLogin.ui
+        src/ui/FoxogramModal.ui
 
+)
+target_include_directories(foxogram
+        PUBLIC
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>"
+)
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${sources})
+
+set_target_properties(foxogram PROPERTIES
+        MACOSX_BUNDLE TRUE
+)
 
 include(CMakePackageConfigHelpers)
 

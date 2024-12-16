@@ -1,8 +1,9 @@
-#include "FoxogramLoginForm.h"
+#include <QApplication>
+#include <FoxogramMainWindow.h>
 
 int main(int argc, char* argv[]) {
     QApplication app(argc, argv);
-    FoxogramLoginForm window;
+    FoxogramMainWindow window;
     window.show();
     return app.exec();
 }
