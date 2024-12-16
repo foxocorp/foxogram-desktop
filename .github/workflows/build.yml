@@ -12,7 +12,7 @@ jobs:
         os: [ macos-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-#      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
