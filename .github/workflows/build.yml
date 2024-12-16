@@ -19,6 +19,9 @@ jobs:
         with:
           version: '6.8.0'
 
+      - name: Install Ninja
+        uses: turtlesec-no/get-ninja@main
+
       - name: Build Foxogram
         run: |
           mkdir cmake-build
