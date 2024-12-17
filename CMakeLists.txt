@@ -64,17 +64,21 @@ set_target_properties(foxogram PROPERTIES
 include(CMakePackageConfigHelpers)
 
 target_sources(foxogram PRIVATE ${sources})
-set_target_properties(foxogram PROPERTIES
-        SOVERSION ${PROJECT_VERSION_MAJOR}
-        VERSION ${PROJECT_VERSION})
 
-install(TARGETS foxogram
-        BUNDLE  DESTINATION .
-        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
 qt_generate_deploy_app_script(
         TARGET foxogram
         OUTPUT_SCRIPT deploy_script
         NO_UNSUPPORTED_PLATFORM_ERROR
 )
+
+set_target_properties(foxogram PROPERTIES
+        SOVERSION ${PROJECT_VERSION})
+
+install(TARGETS foxogram
+        BUNDLE  DESTINATION .
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
 install(SCRIPT ${deploy_script})
+
+set(CPACK_BUNDLE_STARTUP_COMMAND ${PROJECT_BINARY_DIR}/startup.sh)

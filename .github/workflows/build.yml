@@ -2,29 +2,31 @@ name: Build Foxogram Desktop
 
 on:
   push:
-    branches: [ "main" ]
-
-permissions:
-  contents: write
+    branches:
+      - workflow
 
 jobs:
   build:
     strategy:
       matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
+        os: [ macos-latest ]
     runs-on: ${{ matrix.os }}
     steps:
-#      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
           version: '6.8.0'
 
+      - name: Install Ninja
+        uses: turtlesec-no/get-ninja@main
+
       - name: Build Foxogram
         run: |
           mkdir cmake-build
-          cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -B cmake-build
+          cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -G Ninja -B cmake-build
+          Ninja -C cmake-build
           cmake --build cmake-build --target install
 
       - name: Archive Foxogram
@@ -41,19 +43,3 @@ jobs:
         with:
           name: ${{ matrix.os }}.zip
           path: ${{ matrix.os }}.zip
-
-  upload:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-
-      - name: List files
-        run: ls -la
-
-      - name: Create release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.run_id }}
-          files: "*-latest.zip"
