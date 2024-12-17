@@ -93,6 +93,9 @@ void FoxogramVerifyEmailModal::confirmClicked() {
     if (code.size() != 6) return;
     try {
         parent->me->verifyEmail(code.toStdString());
+        parent->graphicsEffect()->setEnabled(false);
+        this->hide();
+        emit emailConfirmed();
     } catch(std::exception& e) {
         std::cout << e.what() << std::endl;
     }

@@ -18,11 +18,12 @@ private slots:
     void login();
     void moved(QMoveEvent*);
 private:
-    FoxogramVerifyEmailModal* modal;
     Ui::FoxogramSignupUi ui;
 protected:
     FoxogramMainWindow* parent;
     foxogram::Me* me;
     friend class FoxogramVerifyEmailModal;
+    FoxogramVerifyEmailModal* modal;
+    friend FoxogramMainWindow;
 };
 

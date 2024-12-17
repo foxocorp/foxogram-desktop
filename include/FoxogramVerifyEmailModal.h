@@ -6,6 +6,7 @@
 #include <QTimer>
 
 class FoxogramVerifyEmailModal : public FoxogramModal {
+    Q_OBJECT
 public:
     explicit FoxogramVerifyEmailModal(class FoxogramSignupForm* parent);
     void showEvent(QShowEvent *event);
@@ -14,6 +15,8 @@ public slots:
     void timerChanged();
     void linkClicked();
     void confirmClicked();
+signals:
+    void emailConfirmed();
 private:
     QTimer timer;
     QTime time;
