@@ -31,7 +31,6 @@ target_link_libraries(foxogram PUBLIC libfoxogram
         Qt::Gui
         Qt::Widgets
 )
-
 set(sources
         include/IconButton.h
         include/DigitInput.h
@@ -83,5 +82,7 @@ install(TARGETS foxogram
 )
 
 install(SCRIPT ${deploy_script})
-
+if (APPLE)
+install(CODE "execute_process(\"cp ${OPENSSL_SSL_LIBRARY} ${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libssl.3.dylib && cp ${OPENSSL_CRYPTO_LIBRARY} ${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libcrypto.3.dylib\"")
+endif()
 set(CPACK_BUNDLE_STARTUP_COMMAND ${PROJECT_BINARY_DIR}/startup.sh)
