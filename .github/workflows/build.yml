@@ -27,10 +27,7 @@ jobs:
 
       - name: Install OpenSSL (Windows)
         if: runner.os == 'Windows'
-        shell: pwsh
-        run: |
-          echo "VCPKG_ROOT=$env:VCPKG_INSTALLATION_ROOT" | Out-File -FilePath $env:GITHUB_ENV -Append
-          vcpkg install openssl:x64-windows-static-md
+        run: powershell.exe ./.github/workflows/Install-OpenSSL.ps1
 
       - name: Build Foxogram
         run: |
