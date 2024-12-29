@@ -82,7 +82,7 @@ install(TARGETS foxogram
 )
 
 install(SCRIPT ${deploy_script})
-if (WIN32)
+if (APPLE)
     install(CODE "execute_process(COMMAND cp \"${OPENSSL_SSL_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libssl.3.dylib\")
 execute_process(COMMAND cp \"${OPENSSL_CRYPTO_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libcrypto.3.dylib\")")
 endif()
