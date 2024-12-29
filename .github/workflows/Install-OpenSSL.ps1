@@ -9,7 +9,7 @@ $arch = 'INTEL'
 $bits = '64'
 $light = $false
 $installerType = "exe"
-$version = (Get-ToolsetContent).openssl.version
+$version = "3.4.0"
 $installDir = "$env:ProgramFiles\OpenSSL"
 
 # Fetch available installers list
