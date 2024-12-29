@@ -23,17 +23,22 @@ jobs:
           version: '6.8.0'
 
       - name: Install Ninja
+        if: runner.os != 'Windows'
         uses: turtlesec-no/get-ninja@main
 
-      - name: Install OpenSSL (Windows)
-        if: runner.os == 'Windows'
-        run: powershell.exe ./.github/workflows/Install-OpenSSL.ps1
-
       - name: Build Foxogram
+        shell: pwsh
         run: |
           mkdir cmake-build
-          cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -G Ninja -B cmake-build
-          ninja -C cmake-build
+          
+          if ($env:RUNNER_OS -eq "Windows") {
+            cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -B cmake-build
+          }
+          else {
+            cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -G Ninja -B cmake-build
+            ninja -C cmake-build
+          }
+          
           cmake --build cmake-build --target install
 
       - name: Archive Foxogram
