@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS src/ui)
 set(CMAKE_AUTOUIC ON)
-find_package(OpenSSL COMPONENTS SSL Crypto REQUIRED)
 set(LIBFOXOGRAM_INSTALL OFF)
 set(IXWEBSOCKET_INSTALL OFF)
 
@@ -83,6 +82,7 @@ install(TARGETS foxogram
 
 install(SCRIPT ${deploy_script})
 if (WIN32)
+    find_package(OpenSSL COMPONENTS SSL Crypto REQUIRED)
     if(OPENSSL_VERSION VERSION_GREATER_EQUAL "3.0.0")
         set(openssldlls "${OPENSSL_INCLUDE_DIR}/../libssl-3-x64.dll;${OPENSSL_INCLUDE_DIR}/../libcrypto-3-x64.dll")
     else ()
@@ -94,7 +94,9 @@ elseif (UNIX)
     install(FILES ${OPENSSL_LIBRARIES}
             DESTINATION ${CMAKE_INSTALL_BINDIR})
 elseif (APPLE)
-    install(CODE "execute_process(COMMAND cp \"${OPENSSL_SSL_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libssl.3.dylib\" COMMAND_ECHO STDOUT)
-execute_process(COMMAND cp \"${OPENSSL_CRYPTO_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libcrypto.3.dylib\" COMMAND_ECHO STDOUT)")
+    install(CODE "execute_process(COMMAND cp \"${OPENSSL_SSL_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libssl.3.dylib\")
+execute_process(COMMAND cp \"${OPENSSL_CRYPTO_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libcrypto.3.dylib\")")
+    message("execute_process(COMMAND cp \"${OPENSSL_SSL_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libssl.3.dylib\")
+execute_process(COMMAND cp \"${OPENSSL_CRYPTO_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libcrypto.3.dylib\")")
 endif()
 set(CPACK_BUNDLE_STARTUP_COMMAND ${PROJECT_BINARY_DIR}/startup.sh)
