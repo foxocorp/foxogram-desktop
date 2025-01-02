@@ -1,15 +1,18 @@
-name: Build Foxogram Desktop
+name: Build Desktop
 
 on:
   push:
     branches:
-      - workflow
+      - main
+
+permissions:
+  contents: write
 
 jobs:
   build:
     strategy:
       matrix:
-        os: [ macos-latest ]
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -20,26 +23,40 @@ jobs:
           version: '6.8.0'
 
       - name: Install Ninja
+        if: runner.os != 'Windows'
         uses: turtlesec-no/get-ninja@main
 
       - name: Build Foxogram
+        shell: pwsh
         run: |
           mkdir cmake-build
-          cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -G Ninja -B cmake-build
-          Ninja -C cmake-build
+          
+          if ($env:RUNNER_OS -eq "Windows") {
+            cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -B cmake-build
+          }
+          else {
+            cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -G Ninja -B cmake-build
+            ninja -C cmake-build
+          }
+          
           cmake --build cmake-build --target install
 
       - name: Archive Foxogram
         shell: pwsh
         run: |
           if ($env:RUNNER_OS -eq "Windows") {
-            7z a ${{ matrix.os }}.zip foxogram
-          } else {
-            zip -r ${{ matrix.os }}.zip foxogram
+            7z a foxogram-win.zip foxogram
+          }
+          elseif ($env:RUNNER_OS -eq "macOS") {
+            zip -r foxogram-macos.zip foxogram/foxogram.app
+          }
+          else {
+            zip -r foxogram-linux.zip foxogram
           }
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: ${{ matrix.os }}.zip
-          path: ${{ matrix.os }}.zip
+          name: Foxogram ${{ github.run_id }}
+          tag_name: foxogram-${{ github.run_id }}
+          files: "foxogram-*.zip"
