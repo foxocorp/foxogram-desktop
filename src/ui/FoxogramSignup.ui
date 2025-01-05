@@ -295,7 +295,13 @@ border-radius: 5;</string>
           <string notr="true">color: &quot;#000000&quot;;
 Text-align: left;
 padding-left: 15;
-background-color: &quot;#ececec&quot;;</string>
+padding-right: 14px;
+border-radius: 5;
+background-color: &quot;#ececec&quot;;
+background-image: url(:/assets/arrow.forward.svg);
+background-repeat: no-repeat;
+background-position: center right;
+background-origin: content;</string>
          </property>
          <property name="text">
           <string>Register</string>
@@ -371,9 +377,14 @@ background-color: &quot;#ececec&quot;;</string>
        </property>
        <property name="styleSheet">
         <string notr="true">Text-align: left;
-padding-left: 15;
+padding-left: 15px;
+padding-right: 14px;
 border: 1px solid &quot;#303030&quot;;
-border-radius: 5;</string>
+border-radius: 5;
+background-image: url(:/assets/person.svg);
+background-repeat: no-repeat;
+background-position: center right;
+background-origin: content;</string>
        </property>
        <property name="text">
         <string>Already have an account?</string>
@@ -426,6 +437,8 @@ border-radius: 5;</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="assets.qrc"/>
+ </resources>
  <connections/>
 </ui>

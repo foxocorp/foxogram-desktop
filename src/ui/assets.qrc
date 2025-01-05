@@ -1,0 +1,12 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource>
+        <file>assets/arrow.forward.svg</file>
+        <file>assets/arrow.trianglehead.counterclockwise.svg</file>
+        <file>assets/failed.svg</file>
+        <file>assets/plus.circle.svg</file>
+        <file>assets/read.svg</file>
+        <file>assets/sending.svg</file>
+        <file>assets/sent.svg</file>
+        <file>assets/person.svg</file>
+    </qresource>
+</RCC>

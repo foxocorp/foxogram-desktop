@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_AUTOUIC_SEARCH_PATHS src/ui)
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTORCC_SEARCH_PATHS src/ui)
 set(LIBFOXOGRAM_INSTALL OFF)
 set(IXWEBSOCKET_INSTALL OFF)
 
@@ -49,6 +51,7 @@ set(sources
         src/ui/FoxogramSignup.ui
         src/ui/FoxogramLogin.ui
         src/ui/FoxogramModal.ui
+        src/ui/assets.qrc
 
 )
 target_include_directories(foxogram

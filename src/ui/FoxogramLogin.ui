@@ -268,10 +268,22 @@ border-radius: 5;</string>
           <string notr="true">color: &quot;#000000&quot;;
 Text-align: left;
 padding-left: 15;
-background-color: &quot;#ececec&quot;;</string>
+padding-right: 14;
+border-radius: 5;
+background-color: &quot;#ececec&quot;;
+background-image: url(:/assets/arrow.forward.svg);
+background-repeat: no-repeat;
+background-position: center right;
+background-origin: content;</string>
          </property>
          <property name="text">
-          <string>Log in</string>
+          <string>Log In</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>28</width>
+           <height>29</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -326,6 +338,9 @@ background-color: &quot;#ececec&quot;;</string>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
+        <layout class="QHBoxLayout" name="horizontalLayout"/>
+       </item>
+       <item>
         <widget class="QPushButton" name="resetPasswordButton">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -346,9 +361,14 @@ background-color: &quot;#ececec&quot;;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">Text-align: left;
-padding-left: 15;
+padding-left: 15px;
+padding-right: 14px;
 border: 1px solid &quot;#303030&quot;;
-border-radius: 5;</string>
+border-radius: 5;
+background-image: url(:/assets/arrow.trianglehead.counterclockwise.svg);
+background-repeat: no-repeat;
+background-position: center right;
+background-origin: content;</string>
          </property>
          <property name="text">
           <string>Reset your password</string>
@@ -377,8 +397,13 @@ border-radius: 5;</string>
          <property name="styleSheet">
           <string notr="true">Text-align: left;
 padding-left: 15;
+padding-right: 14;
 border: 1px solid &quot;#303030&quot;;
-border-radius: 5;</string>
+border-radius: 5;
+background-image: url(:/assets/plus.circle.svg);
+background-repeat: no-repeat;
+background-position: center right;
+background-origin: content;</string>
          </property>
          <property name="text">
           <string>Create new account</string>
@@ -391,6 +416,8 @@ border-radius: 5;</string>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="assets.qrc"/>
+ </resources>
  <connections/>
 </ui>
