@@ -8,5 +8,6 @@
         <file>assets/sending.svg</file>
         <file>assets/sent.svg</file>
         <file>assets/person.svg</file>
+        <file>assets/timer.svg</file>
     </qresource>
 </RCC>

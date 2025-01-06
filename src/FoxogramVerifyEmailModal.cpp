@@ -9,6 +9,20 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) :
     resize(416, 263);
     ui->pushButton_2->deleteLater();
     ui->pushButton->setText("Confirm");
+    auto buttonFont = ui->pushButton->font();
+    buttonFont.setPointSize(16);
+    ui->pushButton->setFont(buttonFont);
+    ui->pushButton->setStyleSheet("Text-align: left;"
+        "background-color: #ececec;"
+        "color: #000000;"
+        "border-radius: 5px;"
+        "padding-right: 14px;"
+        "padding-left: 14px;"
+        "background-image: url(:/assets/arrow.forward.svg);"
+        "background-repeat: no-repeat;"
+        "background-position: center right;"
+        "background-origin: content;"
+    );
     layout.addWidget(&input);
     layout.addWidget(&input2);
     layout.addWidget(&input3);
@@ -28,10 +42,16 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) :
     ui->verticalLayout_2->insertLayout(1, &layout);
     label.setText("Time until you can resend code");
     timeLabel.setText("<html><head/><body><p><span style=\" color:#838383;\">01:00</span></p></body></html>");
+    timeLabel.setStyleSheet("color: #000000;"
+        "padding-right: 12px;"
+        "background-image: url(:/assets/timer.svg);"
+        "background-repeat: no-repeat;"
+        "background-position: center right;"
+    );
     auto font = label.font();
     font.setPointSize(10);
     label.setFont(font);
-    label.setStyleSheet("Text-align: left");
+    label.setStyleSheet("Text-align: left;");
     label.setOpenExternalLinks(false);
     auto layout2 = new QHBoxLayout();
     layout2->addWidget(&label);
