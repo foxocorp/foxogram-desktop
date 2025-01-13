@@ -28,9 +28,9 @@ FetchContent_Declare(libfoxogram GIT_REPOSITORY https://github.com/Foxocorp/foxo
 )
 FetchContent_MakeAvailable(libfoxogram)
 target_link_libraries(foxogram PUBLIC libfoxogram
-        Qt::Core
-        Qt::Gui
-        Qt::Widgets
+        Qt6::Core
+        Qt6::Gui
+        Qt6::Widgets
 )
 set(sources
         include/IconButton.h
