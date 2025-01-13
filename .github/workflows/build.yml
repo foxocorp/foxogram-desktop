@@ -29,17 +29,7 @@ jobs:
       - name: Build Foxogram
         shell: pwsh
         run: |
-          mkdir cmake-build
-          
-          if ($env:RUNNER_OS -eq "Windows") {
-            cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -B cmake-build
-          }
-          else {
-            cmake -DCMAKE_BUILD_TYPE=Release -DIXWEBSOCKET_INSTALL:BOOL=OFF -DCMAKE_INSTALL_PREFIX=foxogram -G Ninja -B cmake-build
-            ninja -C cmake-build
-          }
-          
-          cmake --build cmake-build --target install
+          make
 
       - name: Archive Foxogram
         shell: pwsh
