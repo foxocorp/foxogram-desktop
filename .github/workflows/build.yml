@@ -23,12 +23,15 @@ jobs:
           version: '6.8.0'
 
       - name: Install Ninja
-        if: runner.os != 'Windows'
         uses: turtlesec-no/get-ninja@main
 
       - name: Build Foxogram
         shell: pwsh
         run: |
+          if ($env:RUNNER_OS -eq "Windows") {
+            $env:OPENSSL_ROOT_DIR = C:/Program Files/OpenSSL/
+          }
+          
           make
 
       - name: Archive Foxogram
