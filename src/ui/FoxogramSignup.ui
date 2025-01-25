@@ -112,7 +112,7 @@
               </font>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Username &lt;span style=&quot; color:#a53f3f;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>Username &lt;span style=&quot; color:#a53f3f;&quot;&gt;*&lt;/span&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>false</bool>
@@ -172,7 +172,7 @@ border-radius: 5;</string>
               </font>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Email &lt;span style=&quot; color:#a53f3f;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>Email &lt;span style=&quot; color:#a53f3f;&quot;&gt;*&lt;/span&gt;</string>
              </property>
              <property name="wordWrap">
               <bool>false</bool>
@@ -232,7 +232,7 @@ border-radius: 5;</string>
               </font>
              </property>
              <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Password &lt;span style=&quot; color:#a53f3f;&quot;&gt;*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>Password &lt;span style=&quot; color:#a53f3f;&quot;&gt;*&lt;/span&gt;</string>
              </property>
             </widget>
            </item>

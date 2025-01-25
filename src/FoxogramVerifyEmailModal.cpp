@@ -41,7 +41,7 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) :
     connect(&input6, &DigitInput::digitDeleted, &input5, &DigitInput::setFocused);
     ui->verticalLayout_2->insertLayout(1, &layout);
     label.setText("Time until you can resend code");
-    timeLabel.setText("<html><head/><body><p><span style=\" color:#838383;\">01:00</span></p></body></html>");
+    timeLabel.setText("<span style=\" color:#838383;\">01:00</span>");
     timeLabel.setStyleSheet("color: #000000;"
         "padding-right: 12px;"
         "background-image: url(:/assets/timer.svg);"
@@ -92,7 +92,7 @@ void FoxogramVerifyEmailModal::showEvent(QShowEvent *event) {
 void FoxogramVerifyEmailModal::timerChanged() {
     if (!comparesEqual(time, QTime(0,0,0))) {
         time = time.addSecs(-1);
-        timeLabel.setText("<html><head/><body><p><span style=\" color:#838383;\">" + time.toString("mm:ss") + "</span></p></body></html>");
+        timeLabel.setText("<span style=\" color:#838383;\">" + time.toString("mm:ss") + "</span>");
     } else {
         timeLabel.hide();
         label.setText(R"(Didn't receive code? <a href=\"\" style="color:#4a89ff;" style="text-decoration:none">Send again</a>)");

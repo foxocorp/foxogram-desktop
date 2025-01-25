@@ -9,5 +9,9 @@
         <file>assets/sent.svg</file>
         <file>assets/person.svg</file>
         <file>assets/timer.svg</file>
+        <file>assets/gearshape.fill.svg</file>
+        <file>assets/paperplane.svg</file>
+        <file>assets/person.2.arrow.trianglehead.counterclockwise.svg</file>
+        <file>assets/square.and.arrow.up.svg</file>
     </qresource>
 </RCC>
