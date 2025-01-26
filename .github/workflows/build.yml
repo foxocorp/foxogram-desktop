@@ -23,6 +23,7 @@ jobs:
           version: '6.8.0'
 
       - name: Install Ninja
+        if: runner.os != 'Windows'
         uses: turtlesec-no/get-ninja@main
 
       - name: Build Foxogram
