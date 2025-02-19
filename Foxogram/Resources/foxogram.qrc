@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/logo.ico</file>
+        <file>icons/logo.png</file>
+        <file>icons/logo.svg</file>
+        <file>ui/icons/authorization/arrow.forward.svg</file>
+        <file>ui/icons/authorization/arrow.trianglehead.counterclockwise.svg</file>
+        <file>ui/icons/authorization/person.svg</file>
+        <file>ui/icons/authorization/plus.circle.svg</file>
+        <file>ui/images/authorization/blue.png</file>
+        <file>ui/images/loading/pawprints.gif</file>
+        <file>foxogram.qrc</file>
+    </qresource>
+</RCC>
