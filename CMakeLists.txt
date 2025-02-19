@@ -24,7 +24,7 @@ qt_add_executable(foxogram)
 
 include(FetchContent)
 FetchContent_Declare(libfoxogram GIT_REPOSITORY https://github.com/Foxocorp/foxogram-lib
-        GIT_TAG main
+        GIT_TAG 153b5c7a7d9ee4dece8e7c0add969b5f8c8ce4a0
 )
 FetchContent_MakeAvailable(libfoxogram)
 target_link_libraries(foxogram PUBLIC libfoxogram
@@ -40,6 +40,8 @@ set(sources
         include/FoxogramMainWindow.h
         include/FoxogramModal.h
         include/FoxogramVerifyEmailModal.h
+        include/MessageComponent.h
+        include/ChannelComponent.h
         src/IconButton.cpp
         src/DigitInput.cpp
         src/FoxogramLoginForm.cpp
@@ -47,12 +49,15 @@ set(sources
         src/FoxogramMainWindow.cpp
         src/FoxogramModal.cpp
         src/FoxogramVerifyEmailModal.cpp
+        src/MessageComponent.cpp
+        src/ChannelComponent.cpp
         src/main.cpp
         src/ui/FoxogramSignup.ui
         src/ui/FoxogramLogin.ui
         src/ui/FoxogramModal.ui
+        src/ui/ChannelComponent.ui
+        src/ui/MessageComponent.ui
         src/ui/assets.qrc
-
 )
 target_include_directories(foxogram
         PUBLIC

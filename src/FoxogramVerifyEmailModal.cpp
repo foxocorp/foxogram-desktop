@@ -7,12 +7,12 @@
 
 FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) : FoxogramModal(parent) {
     resize(416, 263);
-    ui->pushButton_2->deleteLater();
-    ui->pushButton->setText("Confirm");
-    auto buttonFont = ui->pushButton->font();
+    ui.pushButton_2->deleteLater();
+    ui.pushButton->setText("Confirm");
+    auto buttonFont = ui.pushButton->font();
     buttonFont.setPointSize(16);
-    ui->pushButton->setFont(buttonFont);
-    ui->pushButton->setStyleSheet("Text-align: left;"
+    ui.pushButton->setFont(buttonFont);
+    ui.pushButton->setStyleSheet("Text-align: left;"
         "background-color: #ececec;"
         "color: #000000;"
         "border-radius: 5px;"
@@ -39,7 +39,7 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) :
     connect(&input4, &DigitInput::digitDeleted, &input3, &DigitInput::setFocused);
     connect(&input5, &DigitInput::digitDeleted, &input4, &DigitInput::setFocused);
     connect(&input6, &DigitInput::digitDeleted, &input5, &DigitInput::setFocused);
-    ui->verticalLayout_2->insertLayout(1, &layout);
+    ui.verticalLayout_2->insertLayout(1, &layout);
     label.setText("Time until you can resend code");
     timeLabel.setText("<span style=\" color:#838383;\">01:00</span>");
     timeLabel.setStyleSheet("color: #000000;"
@@ -57,21 +57,21 @@ FoxogramVerifyEmailModal::FoxogramVerifyEmailModal(FoxogramSignupForm* parent) :
     layout2->addWidget(&label);
     layout2->addItem(new QSpacerItem(20, 1, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum));
     layout2->addWidget(&timeLabel);
-    ui->verticalLayout_2->addLayout(layout2);
-    ui->gridLayout->setRowStretch(0, 16);
-    ui->gridLayout->setRowStretch(1, 204);
-    ui->gridLayout->setRowStretch(2, 16);
-    ui->gridLayout->setColumnStretch(0, 31);
-    ui->gridLayout->setColumnStretch(1, 354);
-    ui->gridLayout->setColumnStretch(2, 31);
-    ui->label->setText("Check your email");
-    ui->label_2->setText("fox@foxmail.com");
+    ui.verticalLayout_2->addLayout(layout2);
+    ui.gridLayout->setRowStretch(0, 16);
+    ui.gridLayout->setRowStretch(1, 204);
+    ui.gridLayout->setRowStretch(2, 16);
+    ui.gridLayout->setColumnStretch(0, 31);
+    ui.gridLayout->setColumnStretch(1, 354);
+    ui.gridLayout->setColumnStretch(2, 31);
+    ui.label->setText("Check your email");
+    ui.label_2->setText("fox@foxmail.com");
     this->setStyleSheet("background-color: #080808;");
     setWindowOpacity(0.97);
     this->parent = parent;
     label.setTextInteractionFlags(Qt::TextBrowserInteraction);
     connect(&label, &QLabel::linkActivated, this, &FoxogramVerifyEmailModal::linkClicked);
-    connect(ui->pushButton, &QPushButton::clicked, this, &FoxogramVerifyEmailModal::confirmClicked);
+    connect(ui.pushButton, &QPushButton::clicked, this, &FoxogramVerifyEmailModal::confirmClicked);
 }
 
 void FoxogramVerifyEmailModal::parentMoved(QMoveEvent* event) {
