@@ -14,10 +14,6 @@ ResetPasswordModal::ResetPasswordModal(QWidget *parent) : ModalWidget{parent} {
     QGridLayout *gridLayout = new QGridLayout(this);
     gridLayout->setContentsMargins(0, 0, 0, 0);
 
-    gridLayout->setColumnStretch(0, 1);
-    gridLayout->setColumnStretch(1, 2);
-    gridLayout->setColumnStretch(2, 1);
-
     // Vertical spacers
     QSpacerItem *verticalSpacerTop = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
     QSpacerItem *verticalSpacerBottom = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
@@ -30,7 +26,7 @@ ResetPasswordModal::ResetPasswordModal(QWidget *parent) : ModalWidget{parent} {
     QWidget *innerWidget = new QWidget(this);
     innerWidget->setObjectName("innerWidget");
     QVBoxLayout *innerLayout = new QVBoxLayout(innerWidget);
-    innerLayout->setContentsMargins(20, 20, 20, 20);
+    innerLayout->setContentsMargins(32, 20, 32, 20);
     innerLayout->setSpacing(10);
 
     // Title label
@@ -54,6 +50,8 @@ ResetPasswordModal::ResetPasswordModal(QWidget *parent) : ModalWidget{parent} {
     emailInput->setFont(inputFont);
     emailInput->setObjectName("textInput");
     emailInput->setPlaceholderText("floofer@coof.fox");
+    emailInput->setFixedSize(352, 48);
+    emailInput->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     innerLayout->addWidget(emailInput);
 
     innerLayout->addSpacing(5);
@@ -66,6 +64,7 @@ ResetPasswordModal::ResetPasswordModal(QWidget *parent) : ModalWidget{parent} {
     buttonFont.setWeight(QFont::DemiBold);
     confirmButton->setFont(buttonFont);
     confirmButton->setFocusPolicy(Qt::NoFocus);
+    confirmButton->setFixedSize(352, 48);
     innerLayout->addWidget(confirmButton);
 
     // Grid layout placement

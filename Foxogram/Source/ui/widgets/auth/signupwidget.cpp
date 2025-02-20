@@ -7,9 +7,6 @@ SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
     setStyleSheet(Style::styleSheet);
 
     QGridLayout *gridLayout = new QGridLayout(this);
-    gridLayout->setColumnStretch(0, 2);
-    gridLayout->setColumnStretch(1, 3);
-    gridLayout->setColumnStretch(2, 2);
 
     QSpacerItem *verticalSpacer = new QSpacerItem(20, 61, QSizePolicy::Minimum, QSizePolicy::Expanding);
     gridLayout->addItem(verticalSpacer, 0, 1);
@@ -24,7 +21,7 @@ SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
     gridLayout->addItem(verticalSpacerBottom, 2, 1);
 
     QVBoxLayout *mainLayout = new QVBoxLayout();
-    mainLayout->setSpacing(10);
+    mainLayout->setSpacing(13);
 
     QLabel *loginLabel = new QLabel("Sign up");
     QFont loginFont;
@@ -44,6 +41,7 @@ SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
     usernameInput->setFont(inputFont);
     usernameInput->setObjectName("textInput");
     usernameInput->setPlaceholderText("floof_fox");
+    usernameInput->setFixedSize(368, 48);
     usernameLayout->addWidget(usernameInput);
 
     mainLayout->addLayout(usernameLayout);
@@ -57,6 +55,7 @@ SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
     emailInput->setFont(inputFont);
     emailInput->setObjectName("textInput");
     emailInput->setPlaceholderText("floofer@coof.fox");
+    emailInput->setFixedSize(368, 48);
     emailLayout->addWidget(emailInput);
 
     mainLayout->addLayout(emailLayout);
@@ -71,13 +70,14 @@ SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
     passwordInput->setObjectName("textInput");
     passwordInput->setPlaceholderText("your floof password :3");
     passwordInput->setEchoMode(QLineEdit::Password);
+    passwordInput->setFixedSize(368, 48);
     passwordLayout->addWidget(passwordInput);
 
     mainLayout->addLayout(passwordLayout);
 
     // Register button
     QFont buttonFont;
-    buttonFont.setPointSize(12);
+    buttonFont.setPointSize(15);
     buttonFont.setWeight(QFont::DemiBold);
 
     registerButton = new QPushButton("Register");
@@ -85,6 +85,7 @@ SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
     registerButton->setFocusPolicy(Qt::NoFocus);
     registerButton->setObjectName("whiteButton");
     registerButton->setProperty("name", "login");
+    registerButton->setFixedSize(368, 48);
     mainLayout->addWidget(registerButton);
 
     // Separator
@@ -94,11 +95,13 @@ SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
     mainLayout->addWidget(hFrame);
 
     // Have account button
+    buttonFont.setPointSize(12);
     haveAccountButton = new QPushButton("Already have an account?");
     haveAccountButton->setFont(buttonFont);
     haveAccountButton->setFocusPolicy(Qt::NoFocus);
     haveAccountButton->setObjectName("trButton");
     haveAccountButton->setProperty("name", "have_account");
+    haveAccountButton->setFixedSize(368, 40);
     mainLayout->addWidget(haveAccountButton);
 
     // Add to layout

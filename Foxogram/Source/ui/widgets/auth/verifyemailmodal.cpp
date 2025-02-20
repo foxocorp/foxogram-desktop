@@ -17,10 +17,6 @@ VerifyEmailModal::VerifyEmailModal(QWidget *parent, UserData *userData) : ModalW
     QGridLayout *gridLayout = new QGridLayout(this);
     gridLayout->setContentsMargins(0, 0, 0, 0);
 
-    gridLayout->setColumnStretch(0, 1);
-    gridLayout->setColumnStretch(1, 2);
-    gridLayout->setColumnStretch(2, 1);
-
     // Vertical spacers
     QSpacerItem *verticalSpacerTop = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
     QSpacerItem *verticalSpacerBottom = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
@@ -33,7 +29,7 @@ VerifyEmailModal::VerifyEmailModal(QWidget *parent, UserData *userData) : ModalW
     QWidget *innerWidget = new QWidget(this);
     innerWidget->setObjectName("innerWidget");
     QVBoxLayout *innerLayout = new QVBoxLayout(innerWidget);
-    innerLayout->setContentsMargins(20, 20, 20, 20);
+    innerLayout->setContentsMargins(32, 20, 32  , 20);
     innerLayout->setSpacing(10);
 
     // Title label
@@ -53,6 +49,7 @@ VerifyEmailModal::VerifyEmailModal(QWidget *parent, UserData *userData) : ModalW
     QWidget *digitsWidget = new QWidget(this);
     digitsLayout = new QHBoxLayout(digitsWidget);
     digitsLayout->setContentsMargins(0, 0, 0, 0);
+    digitsLayout->setSpacing(13);
     digitsWidget->setLayout(digitsLayout);
     innerLayout->addWidget(digitsWidget);
 
@@ -64,6 +61,7 @@ VerifyEmailModal::VerifyEmailModal(QWidget *parent, UserData *userData) : ModalW
     buttonFont.setWeight(QFont::DemiBold);
     confirmButton->setFont(buttonFont);
     confirmButton->setFocusPolicy(Qt::NoFocus);
+    confirmButton->setFixedSize(352, 48);
     innerLayout->addWidget(confirmButton);
 
     // Resend code label
@@ -138,6 +136,7 @@ void VerifyEmailModal::setupDigits()
     for (int i = 0; i < verifyCodeLength; ++i) {
         DigitInput *di = new DigitInput(this);
         digits.insert(i, di);
+        di->setFixedSize(48, 48);
         digitsLayout->addWidget(di);
     }
 
