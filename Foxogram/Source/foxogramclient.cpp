@@ -62,8 +62,9 @@ void FoxogramClient::openMainWindow()
 
 void FoxogramClient::initializeAuthWidget()
 {
+    user = (foxogram::Me*)malloc(sizeof(foxogram::Me));
     QMetaObject::invokeMethod(this, [=]() {
-        authWidget = std::make_unique<Auth::AuthWidget>();
+        authWidget = std::make_unique<Auth::AuthWidget>(nullptr, user);
 
         if (lw)
             lw->proceedLoading();

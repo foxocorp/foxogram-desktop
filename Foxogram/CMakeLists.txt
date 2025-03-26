@@ -80,19 +80,17 @@ target_include_directories(FoxogramDesktop PUBLIC
 # Including external libraries
 include(../cmake/CPM.cmake)
 
-# FIXME: Project doesn't deploy when using library
 # Foxogram API library
-# CPMAddPackage(
-#     NAME libfoxogram
-#     GIT_REPOSITORY git@github.com:foxocorp/libfoxogram.git
-#     GIT_TAG main
-# )
+CPMAddPackage(
+    NAME libfoxogram
+    GIT_REPOSITORY https://github.com/foxocorp/libfoxogram.git
+    GIT_TAG 32ba291eab166e6e6cad91ee2bc54ab3964daf8f
+)
 
 target_link_libraries(FoxogramDesktop PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Concurrent
-    # FIXME: Project doesn't deploy when using library
-    # libfoxogram
+    libfoxogram
 )
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)

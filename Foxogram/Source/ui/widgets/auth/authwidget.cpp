@@ -5,8 +5,8 @@
 
 namespace Auth {
 
-AuthWidget::AuthWidget(QWidget *parent) : QWidget(parent)
-    , authService(new AuthorizationService(this))
+AuthWidget::AuthWidget(QWidget *parent, foxogram::Me* user) : QWidget(parent)
+    , authService(new AuthorizationService(this, user))
 {
     setObjectName("AuthWidget");
     setStyleSheet(Style::controllerStyleSheet);

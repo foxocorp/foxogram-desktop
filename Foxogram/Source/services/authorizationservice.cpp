@@ -2,6 +2,8 @@
 
 #include <QRegularExpression>
 
+#include <foxogram/exceptions.h>
+
 namespace AuthConstants {
 const int minLength = 4;
 
@@ -19,14 +21,17 @@ inline const QRegularExpression rxUsername(R"(^[_A-Za-z0-9-.]+$)");
 inline const QRegularExpression rxPassword(R"(^.{8,}$)");
 }
 
-AuthorizationService::AuthorizationService(QObject *parent) : QObject{parent} {}
+AuthorizationService::AuthorizationService(QObject *parent, foxogram::Me* user) : QObject{parent}, user(user) {}
 
 bool AuthorizationService::requestAuthorization(LoginUserData *ud)
 {
-    bool success = true;
-
-    if (success)
-        emit successfulLogin();
+    std::cout << user;
+    try {
+        new (user) foxogram::Me{ud->email.toStdString(), ud->password.toStdString()};
+    } catch (std::exception& e) {
+        qDebug() << e.what();
+    }
+    emit successfulLogin();
 
     return false;
 }

@@ -5,6 +5,7 @@
 #include <QMap>
 #include <QStackedWidget>
 #include <QGridLayout>
+#include <foxogram/Me.h>
 
 #include "services/authorizationservice.h"
 
@@ -19,7 +20,7 @@ class AuthWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit AuthWidget(QWidget *parent = nullptr);
+    explicit AuthWidget(QWidget *parent = nullptr, foxogram::Me* user = nullptr);
     ~AuthWidget();
 
     AuthorizationService* authService;

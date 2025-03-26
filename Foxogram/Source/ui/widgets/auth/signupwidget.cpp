@@ -1,5 +1,6 @@
 #include "signupwidget.h"
 #include "style.h"
+#include "../../../../../cmake-build-release/_deps/libfoxogram-src/include/foxogram/exceptions.h"
 
 namespace Auth {
 SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
@@ -116,7 +117,14 @@ SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
         UserData userData;
 
         userData.email = emailInput->text();
-
+        userData.username = usernameInput->text();
+        userData.password = passwordInput->text();
+        try {
+            new (parent->authService->user) foxogram::Me{userData.username.toStdString(),
+                userData.email.toStdString(), userData.password.toStdString()};
+        } catch (std::exception& e) {
+            qDebug() << e.what();
+        }
         emit emailConfirmationRequested(&userData);
     });
 

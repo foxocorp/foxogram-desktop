@@ -2,6 +2,7 @@
 #define AUTHORIZATIONSERVICE_H
 
 #include <QObject>
+#include <foxogram/Me.h>
 
 namespace AuthConstants {
 extern const int minLength;
@@ -34,10 +35,11 @@ class AuthorizationService : public QObject
 {
     Q_OBJECT
 public:
-    explicit AuthorizationService(QObject *parent = nullptr);
+    explicit AuthorizationService(QObject *parent = nullptr, foxogram::Me* user = nullptr);
 
     bool requestAuthorization(LoginUserData *ud);
 
+    foxogram::Me* user;
 Q_SIGNALS:
     void successfulLogin();
 };
