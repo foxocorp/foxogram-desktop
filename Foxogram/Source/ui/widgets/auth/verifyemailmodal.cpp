@@ -64,6 +64,17 @@ VerifyEmailModal::VerifyEmailModal(QWidget *parent, UserData *userData) : ModalW
     confirmButton->setFixedSize(352, 48);
     innerLayout->addWidget(confirmButton);
 
+    connect(confirmButton, &QPushButton::clicked, this, [=]() {
+        std::string code = "";
+        for (auto& d : digits) {
+               code += d->text().toStdString();
+        }
+        if (code.length() != verifyCodeLength) {
+            return;
+        }
+
+    });
+
     // Resend code label
     QLabel *resendLabel = new QLabel("Time until you can resend code", this);
     innerLayout->addWidget(resendLabel);

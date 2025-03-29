@@ -81,6 +81,8 @@ target_include_directories(FoxogramDesktop PUBLIC
 include(../cmake/CPM.cmake)
 
 # Foxogram API library
+set(LIBFOXOGRAM_INSTALL OFF)
+set(IXWEBSOCKET_INSTALL OFF)
 CPMAddPackage(
     NAME libfoxogram
     GIT_REPOSITORY https://github.com/foxocorp/libfoxogram.git
@@ -119,6 +121,23 @@ qt_generate_deploy_app_script(
 )
 
 install(SCRIPT ${deploy_script})
+
+if (APPLE)
+    install(CODE "execute_process(COMMAND cp \"${OPENSSL_SSL_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libssl.3.dylib\")
+execute_process(COMMAND cp \"${OPENSSL_CRYPTO_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libcrypto.3.dylib\")")
+elseif (WIN32)
+    find_package(OpenSSL COMPONENTS SSL Crypto REQUIRED)
+    if(OPENSSL_VERSION VERSION_GREATER_EQUAL "3.0.0")
+        set(openssldlls "${OPENSSL_INCLUDE_DIR}/../libssl-3-x64.dll;${OPENSSL_INCLUDE_DIR}/../libcrypto-3-x64.dll")
+    else ()
+        set(openssldlls "${OPENSSL_INCLUDE_DIR}/../libssl-1_1-x64.dll;${OPENSSL_INCLUDE_DIR}/../libcrypto-1_1-x64.dll")
+    endif ()
+    install(FILES ${openssldlls}
+            DESTINATION ${CMAKE_INSTALL_BINDIR})
+elseif (UNIX)
+    install(FILES ${OPENSSL_LIBRARIES}
+            DESTINATION ${CMAKE_INSTALL_BINDIR})
+endif()
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(FoxogramDesktop)

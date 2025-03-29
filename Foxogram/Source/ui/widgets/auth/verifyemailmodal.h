@@ -17,6 +17,9 @@ public:
     explicit VerifyEmailModal(QWidget *parent, UserData *userData);
     ~VerifyEmailModal();
 
+Q_SIGNALS:
+    void verifyEmailRequested(std::string code);
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 

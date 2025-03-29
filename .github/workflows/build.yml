@@ -1,0 +1,55 @@
+name: Build Desktop
+
+permissions:
+  contents: write
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ macos-latest, ubuntu-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@c6c7281365daef91a238e1c2ddce4eaa94a2991d # v4.1.1
+        with:
+          version: '6.8.0'
+
+      - name: Install Ninja
+        uses: turtlesec-no/get-ninja@3e85fb0044ada1440765803dd87c838edf79def8 # main
+
+      - name: Build Foxogram
+        shell: pwsh
+        run: |
+          if ($env:RUNNER_OS -eq "Windows") {
+            $env:OPENSSL_ROOT_DIR = "C:/Program Files/OpenSSL/"
+          }
+          
+          make
+
+      - name: Archive Foxogram
+        shell: pwsh
+        run: |
+          if ($env:RUNNER_OS -eq "Windows") {
+            7z a foxogram-win.zip foxogram
+          }
+          elseif ($env:RUNNER_OS -eq "macOS") {
+            zip -r foxogram-macos.zip foxogram/foxogram.app
+          }
+          else {
+            zip -r foxogram-linux.zip foxogram
+          }
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
+        with:
+          name: Foxogram ${{ github.run_id }}
+          tag_name: foxogram-${{ github.run_id }}
+          files: "foxogram-*.zip"

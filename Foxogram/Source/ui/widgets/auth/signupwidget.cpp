@@ -123,7 +123,7 @@ SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
             new (parent->authService->user) foxogram::Me{userData.username.toStdString(),
                 userData.email.toStdString(), userData.password.toStdString()};
         } catch (std::exception& e) {
-            qDebug() << e.what();
+            qCritical() << e.what();
         }
         emit emailConfirmationRequested(&userData);
     });

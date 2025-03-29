@@ -25,13 +25,12 @@ AuthorizationService::AuthorizationService(QObject *parent, foxogram::Me* user) 
 
 bool AuthorizationService::requestAuthorization(LoginUserData *ud)
 {
-    std::cout << user;
     try {
         new (user) foxogram::Me{ud->email.toStdString(), ud->password.toStdString()};
+        emit successfulLogin();
     } catch (std::exception& e) {
-        qDebug() << e.what();
+        qCritical() << e.what();
     }
-    emit successfulLogin();
 
     return false;
 }
