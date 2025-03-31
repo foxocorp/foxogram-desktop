@@ -31,6 +31,7 @@ void FoxogramClient::requestAuthorization()
     authWidget->show();
 
     connect(authWidget->authService, &AuthorizationService::successfulLogin, this, &FoxogramClient::setupMainOnAuth);
+    connect(authWidget->authService, &AuthorizationService::successfulEmailVerification, this, &FoxogramClient::setupMainOnAuth);
 
     if (lw)
         lw->deleteLater();
