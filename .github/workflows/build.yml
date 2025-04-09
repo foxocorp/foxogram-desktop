@@ -38,13 +38,13 @@ jobs:
         shell: pwsh
         run: |
           if ($env:RUNNER_OS -eq "Windows") {
-            7z a foxogram-win.zip foxogram
+            7z a foxogram-win.zip foxogram_install
           }
           elseif ($env:RUNNER_OS -eq "macOS") {
-            zip -r foxogram-macos.zip foxogram/foxogram.app
+            zip -r foxogram-macos.zip foxogram_install/foxogram.app
           }
           else {
-            zip -r foxogram-linux.zip foxogram
+            zip -r foxogram-linux.zip foxogram_install
           }
 
       - name: Upload Release
