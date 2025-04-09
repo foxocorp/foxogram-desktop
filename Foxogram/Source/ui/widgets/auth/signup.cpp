@@ -13,7 +13,9 @@ SignUp::SignUp(AuthWidget *parent) : MultiLayerWidget{parent}, parent(parent)
 void SignUp::showEmailConfirmationModal(UserData* userData)
 {
     emailWidget = new VerifyEmailModal(parent, userData);
-
+    connect(emailWidget, &VerifyEmailModal::verifyEmailRequested, this, [=](std::string code) {
+        parent->authService->requestEmailVerification(code);
+    });
     setActiveWidget(emailWidget, true);
 }
 }

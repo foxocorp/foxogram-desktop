@@ -86,7 +86,7 @@ set(IXWEBSOCKET_INSTALL OFF)
 CPMAddPackage(
     NAME libfoxogram
     GIT_REPOSITORY https://github.com/foxocorp/libfoxogram.git
-    GIT_TAG 32ba291eab166e6e6cad91ee2bc54ab3964daf8f
+    GIT_TAG dba93acb72ed4618d561a3de2e96d0b6cd9382cb
 )
 
 target_link_libraries(FoxogramDesktop PRIVATE

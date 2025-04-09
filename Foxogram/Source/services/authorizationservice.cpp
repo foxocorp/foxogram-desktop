@@ -34,3 +34,13 @@ bool AuthorizationService::requestAuthorization(LoginUserData *ud)
 
     return false;
 }
+
+bool AuthorizationService::requestEmailVerification(std::string code) {
+    try {
+        user->verifyEmail(code);
+        emit successfulEmailVerification();
+    } catch (std::exception& e) {
+        qCritical() << e.what();
+    }
+    return false;
+}

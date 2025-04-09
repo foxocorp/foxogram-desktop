@@ -63,8 +63,7 @@ VerifyEmailModal::VerifyEmailModal(QWidget *parent, UserData *userData) : ModalW
     confirmButton->setFocusPolicy(Qt::NoFocus);
     confirmButton->setFixedSize(352, 48);
     innerLayout->addWidget(confirmButton);
-
-    connect(confirmButton, &QPushButton::clicked, this, [=]() {
+    connect(confirmButton, &QPushButton::clicked, this, [=]{
         std::string code = "";
         for (auto& d : digits) {
                code += d->text().toStdString();
@@ -72,7 +71,7 @@ VerifyEmailModal::VerifyEmailModal(QWidget *parent, UserData *userData) : ModalW
         if (code.length() != verifyCodeLength) {
             return;
         }
-
+        emit verifyEmailRequested(code);
     });
 
     // Resend code label

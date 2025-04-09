@@ -39,9 +39,12 @@ public:
 
     bool requestAuthorization(LoginUserData *ud);
 
+    bool requestEmailVerification(std::string code);
+
     foxogram::Me* user;
 Q_SIGNALS:
     void successfulLogin();
+    void successfulEmailVerification();
 };
 
 #endif // AUTHORIZATIONSERVICE_H
