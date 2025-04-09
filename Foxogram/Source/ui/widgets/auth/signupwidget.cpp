@@ -1,6 +1,6 @@
 #include "signupwidget.h"
 #include "style.h"
-#include "../../../../../cmake-build-release/_deps/libfoxogram-src/include/foxogram/exceptions.h"
+#include <foxogram/exceptions.h>
 
 namespace Auth {
 SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
