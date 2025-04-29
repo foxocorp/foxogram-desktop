@@ -9,6 +9,7 @@
         <file>ui/icons/authorization/plus.circle.svg</file>
         <file>ui/images/authorization/blue.png</file>
         <file>ui/images/loading/pawprints.gif</file>
+        <file>ui/icons/messenger/avatar.svg</file>
         <file>foxogram.qrc</file>
     </qresource>
 </RCC>

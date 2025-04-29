@@ -10,4 +10,10 @@ extern const QString verifyEmailModalStyleSheet;
 extern const QString resetPasswordModalStyleSheet;
 }
 
+namespace Messenger::Style {
+    extern const QString leftBarWidgetStyleSheet;
+    extern const QString messengerWidgetStyleSheet;
+    extern const QString chatComponentInfoLayout;
+}
+
 #endif // STYLE_H

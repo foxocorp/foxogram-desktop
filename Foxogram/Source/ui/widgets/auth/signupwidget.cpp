@@ -1,6 +1,8 @@
 #include "signupwidget.h"
-#include "style.h"
+
 #include <QSqlQuery>
+
+#include "../style.h"
 #include <foxogram/exceptions.h>
 
 namespace Auth {

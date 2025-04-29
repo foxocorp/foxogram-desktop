@@ -1,5 +1,5 @@
 #include "verifyemailmodal.h"
-#include "style.h"
+#include "../style.h"
 
 #include <QKeyEvent>
 #include <QClipboard>

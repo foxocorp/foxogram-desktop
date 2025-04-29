@@ -5,8 +5,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Concurrent)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Concurrent)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Concurrent Sql)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Concurrent Sql)
 
 qt_standard_project_setup()
 
@@ -14,7 +14,6 @@ set(PROJECT_SOURCES
         Source/main.cpp
         Source/ui/widgets/messenger/mainwindow.cpp
         Source/ui/widgets/messenger/mainwindow.h
-        Source/ui/widgets/messenger/mainwindow.ui
         Source/launcher.h
         Source/launcher.cpp
         Source/foxogramclient.h
@@ -53,12 +52,14 @@ set(PROJECT_SOURCES
         Source/ui/widgets/modalwidget.cpp
         Source/ui/widgets/basestyle.h
         Source/ui/widgets/basestyle.cpp
-        Source/ui/widgets/auth/style.h
-        Source/ui/widgets/auth/style.cpp
+        Source/ui/widgets/style.h
+        Source/ui/widgets/style.cpp
         Source/ui/widgets/auth/fieldlabel.h
         Source/ui/widgets/auth/fieldlabel.cpp
         Source/ui/widgets/components/flineedit.h
         Source/ui/widgets/components/flineedit.cpp
+        Source/ui/widgets/messenger/ChatComponent.cpp
+        Source/ui/widgets/messenger/ChatComponent.h
 )
 
 set(PROJECT_RESOURCES
@@ -86,12 +87,13 @@ set(IXWEBSOCKET_INSTALL OFF)
 CPMAddPackage(
     NAME libfoxogram
     GIT_REPOSITORY https://github.com/foxocorp/libfoxogram.git
-    GIT_TAG dba93acb72ed4618d561a3de2e96d0b6cd9382cb
+    GIT_TAG 215c2aea619805ead7d8bdae25d861012d61abaf
 )
 
 target_link_libraries(FoxogramDesktop PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Concurrent
+    Qt${QT_VERSION_MAJOR}::Sql
     libfoxogram
 )
 

@@ -1,5 +1,5 @@
 #include "authwidget.h"
-#include "style.h"
+#include "../style.h"
 #include "signup.h"
 #include "signin.h"
 
