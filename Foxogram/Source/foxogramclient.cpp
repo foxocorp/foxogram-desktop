@@ -2,13 +2,40 @@
 
 #include <QApplication>
 #include <QtConcurrent>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
+#include <foxogram/Logger.h>
 
 FoxogramClient::FoxogramClient()
 {
+    foxogram::Logger::setLogLevel(foxogram::LOG_DEBUG);
     loadApplication();
-
-    QThreadPool::globalInstance()->start([&] {
-        initializeAuthWidget();
+    user = (foxogram::Me*)malloc(sizeof(foxogram::Me));
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName("data.db");
+    db.open();
+    QSqlQuery query(db);
+    query.exec("CREATE TABLE IF NOT EXISTS me(id INTEGER PRIMARY KEY CHECK (id = 1), token TEXT)");
+    query.exec("SELECT token FROM me");
+    query.next();
+    bool logged = false;
+    if (!query.value("token").isNull() && !query.value("token").toString().isEmpty()) {
+        try {
+            new (user) foxogram::Me(query.value("token").toString().toStdString());
+            logged = true;
+        } catch (std::exception &e) {
+            qDebug() << e.what();
+        }
+    }
+    db.close();
+    QThreadPool::globalInstance()->start([&, logged]() {
+        std::cout << logged << std::endl;
+        if (!logged) {
+            initializeAuthWidget();
+        } else {
+            openMainWindow();
+            lw->deleteLater();
+        }
     });
 }
 
@@ -29,7 +56,6 @@ void FoxogramClient::requestAuthorization()
     qDebug() << "Authorization requested";
 
     authWidget->show();
-
     connect(authWidget->authService, &AuthorizationService::successfulLogin, this, &FoxogramClient::setupMainOnAuth);
     connect(authWidget->authService, &AuthorizationService::successfulEmailVerification, this, &FoxogramClient::setupMainOnAuth);
 
@@ -55,19 +81,20 @@ void FoxogramClient::loadApplication()
     connect(lw.get(), &LoadingWidget::loaded, this, &FoxogramClient::requestAuthorization);
 }
 
-void FoxogramClient::openMainWindow()
-{
-    mainWindow = std::make_unique<MainWindow>();
-    mainWindow->show();
+void FoxogramClient::openMainWindow() {
+    QMetaObject::invokeMethod(this, [=]() {
+        mainWindow = std::make_unique<MainWindow>(nullptr, user);
+        mainWindow->show();
+    });
 }
 
 void FoxogramClient::initializeAuthWidget()
 {
-    user = (foxogram::Me*)malloc(sizeof(foxogram::Me));
     QMetaObject::invokeMethod(this, [=]() {
         authWidget = std::make_unique<Auth::AuthWidget>(nullptr, user);
 
         if (lw)
-            lw->proceedLoading();
+        lw->proceedLoading();
     });
 }
+
