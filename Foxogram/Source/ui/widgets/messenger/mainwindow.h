@@ -1,23 +1,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
+#include <QWidget>
+#include <foxogram/Me.h>
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
+    MainWindow(QWidget *parent = nullptr, foxogram::Me* user = nullptr);
 private:
-    Ui::MainWindow *ui;
+    foxogram::Me* user;
 };
 #endif // MAINWINDOW_H
