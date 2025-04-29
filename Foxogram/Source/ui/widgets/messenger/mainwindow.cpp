@@ -11,7 +11,6 @@
 
 MainWindow::MainWindow(QWidget *parent, foxogram::Me* user) : QWidget(parent), user(user)
 {
-    qDebug() << (user == nullptr);
     foxogram::Logger::setLogLevel(foxogram::LOG_DEBUG);
 
     QHBoxLayout* HBoxLayout = new QHBoxLayout(this);

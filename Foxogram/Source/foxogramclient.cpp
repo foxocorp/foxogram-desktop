@@ -24,7 +24,7 @@ FoxogramClient::FoxogramClient()
             new (user) foxogram::Me(query.value("token").toString().toStdString());
             logged = true;
         } catch (std::exception &e) {
-            qDebug() << e.what();
+            qCritical() << e.what();
         }
     }
     db.close();
