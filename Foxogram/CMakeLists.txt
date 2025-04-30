@@ -124,6 +124,10 @@ qt_generate_deploy_app_script(
 
 install(SCRIPT ${deploy_script})
 
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(FoxogramDesktop)
+endif()
+
 if (APPLE)
     install(CODE "execute_process(COMMAND cp \"${OPENSSL_SSL_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libssl.3.dylib\")
 execute_process(COMMAND cp \"${OPENSSL_CRYPTO_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libcrypto.3.dylib\")")
@@ -139,8 +143,4 @@ elseif (WIN32)
 elseif (UNIX)
     install(FILES ${OPENSSL_LIBRARIES}
             DESTINATION ${CMAKE_INSTALL_BINDIR})
-endif()
-
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(FoxogramDesktop)
 endif()
