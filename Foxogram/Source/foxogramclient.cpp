@@ -2,17 +2,20 @@
 
 #include <QApplication>
 #include <QtConcurrent>
-#include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include <foxogram/Logger.h>
+#include <constants.h>
 
 FoxogramClient::FoxogramClient()
 {
     foxogram::Logger::setLogLevel(foxogram::LOG_DEBUG);
+    if (!QDir(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)).exists()) {
+        QDir().mkpath(QStandardPaths::writableLocation(QStandardPaths::AppDataLocation));
+    }
     loadApplication();
     user = (foxogram::Me*)malloc(sizeof(foxogram::Me));
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("data.db");
+    db.setDatabaseName(constants::DBPath);
     db.open();
     QSqlQuery query(db);
     query.exec("CREATE TABLE IF NOT EXISTS me(id INTEGER PRIMARY KEY CHECK (id = 1), token TEXT)");
@@ -29,7 +32,6 @@ FoxogramClient::FoxogramClient()
     }
     db.close();
     QThreadPool::globalInstance()->start([&, logged]() {
-        std::cout << logged << std::endl;
         if (!logged) {
             initializeAuthWidget();
         } else {

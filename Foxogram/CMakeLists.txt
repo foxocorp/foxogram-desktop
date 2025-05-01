@@ -12,6 +12,8 @@ qt_standard_project_setup()
 
 set(PROJECT_SOURCES
         Source/main.cpp
+        Source/constants.cpp
+        Source/constants.h
         Source/ui/widgets/messenger/mainwindow.cpp
         Source/ui/widgets/messenger/mainwindow.h
         Source/launcher.h
@@ -62,6 +64,9 @@ set(PROJECT_SOURCES
         Source/ui/widgets/messenger/ChatComponent.h
 )
 
+string(LENGTH "${CMAKE_SOURCE_DIR}/" SOURCE_PATH_SIZE)
+add_definitions("-DSOURCE_PATH_SIZE=${SOURCE_PATH_SIZE}")
+
 set(PROJECT_RESOURCES
         Resources/foxogram.qrc
 )
@@ -91,10 +96,10 @@ CPMAddPackage(
 )
 
 target_link_libraries(FoxogramDesktop PRIVATE
+    libfoxogram
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Concurrent
     Qt${QT_VERSION_MAJOR}::Sql
-    libfoxogram
 )
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
