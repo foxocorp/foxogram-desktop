@@ -27,8 +27,20 @@ jobs:
       - name: Install Ninja
         uses: turtlesec-no/get-ninja@3e85fb0044ada1440765803dd87c838edf79def8 # main
 
+      - name: Run sccache
+        uses: mozilla-actions/sccache-action@7d986dd989559c6ecdb630a3fd2557667be217ad # v0.0.9
+
+      - name: Cache cmake-build
+        uses: actions/cache@v4
+        with:
+          key: cmake-build-${{ runner.os }}-${{ runner.arch }}
+          path: cmake-build
+          restore-keys: cmake-build-${{ runner.os }}-${{ runner.arch }}
+
       - name: Build Foxogram
         shell: pwsh
+        env:
+          SCCACHE_GHA_ENABLED: true
         run: |
           if ($env:RUNNER_OS -eq "Windows") {
             $env:OPENSSL_ROOT_DIR = "C:/Program Files/OpenSSL/"
