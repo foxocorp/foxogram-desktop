@@ -25,7 +25,7 @@ jobs:
           cache: true
 
       - name: Install Ninja
-        uses: turtlesec-no/get-ninja@3e85fb0044ada1440765803dd87c838edf79def8 # main
+        uses: seanmiddleditch/gha-setup-ninja@3b1f8f94a2f8254bd26914c4ab9474d4f0015f67 # v6
 
       - name: Run sccache
         uses: mozilla-actions/sccache-action@7d986dd989559c6ecdb630a3fd2557667be217ad # v0.0.9
