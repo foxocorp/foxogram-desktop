@@ -8,7 +8,7 @@ class ChatComponent : public QWidget {
 Q_OBJECT
 public:
     explicit ChatComponent(QWidget *parent = nullptr, const foxogram::ChannelPtr& channel = nullptr);
-    [readonly] foxogram::ChannelPtr channel;
+    foxogram::ChannelPtr channel;
 };
 
 
