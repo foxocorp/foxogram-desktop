@@ -171,4 +171,25 @@ namespace Messenger::Style {
         color: #818181;
     }
     )";
+
+    const QString searchBarStyleSheet = R"(
+    #searchField {
+        border-radius: 10px;
+        image-position: left;
+        background-color: #161616;
+        placeholder-text-color: #818181;
+        background-image: url(:/ui/icons/messenger/magnifyingglass.svg);
+        background-repeat: no-repeat;
+        background-origin: content;
+        background-position: left center;
+        padding-left: 16px;
+    }
+    #createButton {
+        image: url(:/ui/icons/messenger/plus.app.svg);
+        background-color: #161616;
+        padding: 12px;
+        border: transparent;
+        border-radius: 10px;
+    }
+    )";
 }

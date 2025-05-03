@@ -62,6 +62,8 @@ set(PROJECT_SOURCES
         Source/ui/widgets/components/flineedit.cpp
         Source/ui/widgets/messenger/ChatComponent.cpp
         Source/ui/widgets/messenger/ChatComponent.h
+        Source/ui/widgets/messenger/SearchBar.cpp
+        Source/ui/widgets/messenger/SearchBar.h
 )
 
 string(LENGTH "${CMAKE_SOURCE_DIR}/" SOURCE_PATH_SIZE)
@@ -124,6 +126,7 @@ install(TARGETS FoxogramDesktop
 qt_generate_deploy_app_script(
     TARGET FoxogramDesktop
     OUTPUT_SCRIPT deploy_script
+    NO_TRANSLATIONS
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
 

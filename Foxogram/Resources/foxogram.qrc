@@ -10,6 +10,8 @@
         <file>ui/images/authorization/blue.png</file>
         <file>ui/images/loading/pawprints.gif</file>
         <file>ui/icons/messenger/avatar.svg</file>
+        <file>ui/icons/messenger/magnifyingglass.svg</file>
+        <file>ui/icons/messenger/plus.app.svg</file>
         <file>foxogram.qrc</file>
     </qresource>
 </RCC>

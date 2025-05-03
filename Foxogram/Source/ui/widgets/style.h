@@ -14,6 +14,7 @@ namespace Messenger::Style {
     extern const QString leftBarWidgetStyleSheet;
     extern const QString messengerWidgetStyleSheet;
     extern const QString chatComponentInfoLayout;
+    extern const QString searchBarStyleSheet;
 }
 
 #endif // STYLE_H

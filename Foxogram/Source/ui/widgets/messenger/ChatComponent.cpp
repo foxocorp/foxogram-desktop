@@ -14,7 +14,7 @@ ChatComponent::ChatComponent(QWidget* parent, const foxogram::ChannelPtr& channe
     avatar->setAlignment(Qt::AlignCenter);
     avatar->setFixedSize(72, 72);
     avatar->setObjectName("avatar");
-    avatar->setProperty("defaultAvatar", QVariant(channel->getIcon().empty()));
+    avatar->setProperty("defaultAvatar", channel->getIcon().empty());
     if (channel->getIcon().empty()) {
         avatar->setText(QChar::fromLatin1(std::toupper(channel->getDisplayName().front())));
     }
