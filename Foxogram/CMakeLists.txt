@@ -5,6 +5,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+option(DEV "Use dev api" OFF)
+
+if (DEV)
+    set(LIBFOXOGRAM_USE_DEV ON)
+endif()
+
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Concurrent Sql)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Concurrent Sql)
 
@@ -68,6 +74,7 @@ set(PROJECT_SOURCES
 
 string(LENGTH "${CMAKE_SOURCE_DIR}/" SOURCE_PATH_SIZE)
 add_definitions("-DSOURCE_PATH_SIZE=${SOURCE_PATH_SIZE}")
+add_definitions("-DDEV=${DEV}")
 
 set(PROJECT_RESOURCES
         Resources/foxogram.qrc

@@ -3,7 +3,11 @@
 #include <qstandardpaths.h>
 
 namespace Credentials {
+#ifndef DEV
     const QString applicationName = "Foxogram";
+#else
+    const QString applicationName = "FoxogramDev";
+#endif
     const QString organizationName = "Foxocorp";
     const QString applicationVersion = "1.0.0";
 }
