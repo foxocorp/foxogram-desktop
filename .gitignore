@@ -408,6 +408,8 @@ nbdist/
 
 # CMake
 cmake-build-*/
+cmake-build/
+foxogram_install/
 
 # Mongo Explorer plugin
 .idea/**/mongoSettings.xml

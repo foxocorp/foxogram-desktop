@@ -5,11 +5,6 @@
 
 #include "foxogramclient.h"
 
-namespace Credentials {
-extern const QString applicationName;
-extern const QString organizationName;
-extern const QString applicationVersion;
-}
 
 class Launcher final : public QObject {
     Q_DISABLE_COPY(Launcher)

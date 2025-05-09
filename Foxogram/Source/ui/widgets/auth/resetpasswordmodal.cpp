@@ -1,5 +1,5 @@
 #include "resetpasswordmodal.h"
-#include "style.h"
+#include "../style.h"
 
 #include <QLayout>
 #include <QLabel>

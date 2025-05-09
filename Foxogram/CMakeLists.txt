@@ -5,16 +5,23 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Concurrent)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Concurrent)
+option(DEV "Use dev api" OFF)
+
+if (DEV)
+    set(LIBFOXOGRAM_USE_DEV ON)
+endif()
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Concurrent Sql)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Concurrent Sql)
 
 qt_standard_project_setup()
 
 set(PROJECT_SOURCES
         Source/main.cpp
+        Source/constants.cpp
+        Source/constants.h
         Source/ui/widgets/messenger/mainwindow.cpp
         Source/ui/widgets/messenger/mainwindow.h
-        Source/ui/widgets/messenger/mainwindow.ui
         Source/launcher.h
         Source/launcher.cpp
         Source/foxogramclient.h
@@ -53,13 +60,21 @@ set(PROJECT_SOURCES
         Source/ui/widgets/modalwidget.cpp
         Source/ui/widgets/basestyle.h
         Source/ui/widgets/basestyle.cpp
-        Source/ui/widgets/auth/style.h
-        Source/ui/widgets/auth/style.cpp
+        Source/ui/widgets/style.h
+        Source/ui/widgets/style.cpp
         Source/ui/widgets/auth/fieldlabel.h
         Source/ui/widgets/auth/fieldlabel.cpp
         Source/ui/widgets/components/flineedit.h
         Source/ui/widgets/components/flineedit.cpp
+        Source/ui/widgets/messenger/ChatComponent.cpp
+        Source/ui/widgets/messenger/ChatComponent.h
+        Source/ui/widgets/messenger/SearchBar.cpp
+        Source/ui/widgets/messenger/SearchBar.h
 )
+
+string(LENGTH "${CMAKE_SOURCE_DIR}/" SOURCE_PATH_SIZE)
+add_definitions("-DSOURCE_PATH_SIZE=${SOURCE_PATH_SIZE}")
+add_definitions("-DDEV=${DEV}")
 
 set(PROJECT_RESOURCES
         Resources/foxogram.qrc
@@ -86,13 +101,14 @@ set(IXWEBSOCKET_INSTALL OFF)
 CPMAddPackage(
     NAME libfoxogram
     GIT_REPOSITORY https://github.com/foxocorp/libfoxogram.git
-    GIT_TAG dba93acb72ed4618d561a3de2e96d0b6cd9382cb
+    GIT_TAG 215c2aea619805ead7d8bdae25d861012d61abaf
 )
 
 target_link_libraries(FoxogramDesktop PRIVATE
+    libfoxogram
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Concurrent
-    libfoxogram
+    Qt${QT_VERSION_MAJOR}::Sql
 )
 
 if(${QT_VERSION} VERSION_LESS 6.1.0)
@@ -117,14 +133,19 @@ install(TARGETS FoxogramDesktop
 qt_generate_deploy_app_script(
     TARGET FoxogramDesktop
     OUTPUT_SCRIPT deploy_script
+    NO_TRANSLATIONS
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
 
 install(SCRIPT ${deploy_script})
 
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(FoxogramDesktop)
+endif()
+
 if (APPLE)
-    install(CODE "execute_process(COMMAND cp \"${OPENSSL_SSL_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libssl.3.dylib\")
-execute_process(COMMAND cp \"${OPENSSL_CRYPTO_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/foxogram.app/Contents/Frameworks/libcrypto.3.dylib\")")
+    install(CODE "execute_process(COMMAND cp \"${OPENSSL_SSL_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/FoxogramDesktop.app/Contents/Frameworks/libssl.3.dylib\")
+execute_process(COMMAND cp \"${OPENSSL_CRYPTO_LIBRARY}\" \"${CMAKE_INSTALL_PREFIX}/FoxogramDesktop.app/Contents/Frameworks/libcrypto.3.dylib\")")
 elseif (WIN32)
     find_package(OpenSSL COMPONENTS SSL Crypto REQUIRED)
     if(OPENSSL_VERSION VERSION_GREATER_EQUAL "3.0.0")
@@ -137,8 +158,4 @@ elseif (WIN32)
 elseif (UNIX)
     install(FILES ${OPENSSL_LIBRARIES}
             DESTINATION ${CMAKE_INSTALL_BINDIR})
-endif()
-
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(FoxogramDesktop)
 endif()

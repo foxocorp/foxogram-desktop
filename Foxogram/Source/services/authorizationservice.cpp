@@ -1,8 +1,9 @@
 #include "authorizationservice.h"
 
 #include <QRegularExpression>
-
+#include <QtSql/QSqlQuery>
 #include <foxogram/exceptions.h>
+#include <constants.h>
 
 namespace AuthConstants {
 const int minLength = 4;
@@ -27,6 +28,14 @@ bool AuthorizationService::requestAuthorization(LoginUserData *ud)
 {
     try {
         new (user) foxogram::Me{ud->email.toStdString(), ud->password.toStdString()};
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName(constants::DBPath);
+        db.open();
+        QSqlQuery query(db);
+        query.prepare("INSERT or REPLACE INTO me(id, token) VALUES (1, :token)");
+        query.bindValue(":token", QString::fromStdString(user->getToken()));
+        query.exec();
+        db.close();
         emit successfulLogin();
     } catch (std::exception& e) {
         qCritical() << e.what();

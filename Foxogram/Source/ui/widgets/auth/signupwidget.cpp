@@ -1,6 +1,10 @@
 #include "signupwidget.h"
-#include "style.h"
+
+#include <QtSql/QSqlQuery>
+
+#include "../style.h"
 #include <foxogram/exceptions.h>
+#include <constants.h>
 
 namespace Auth {
 SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
@@ -122,6 +126,14 @@ SignUpWidget::SignUpWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
         try {
             new (parent->authService->user) foxogram::Me{userData.username.toStdString(),
                 userData.email.toStdString(), userData.password.toStdString()};
+            QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+            db.setDatabaseName(constants::DBPath);
+            db.open();
+            QSqlQuery query(db);
+            query.prepare("INSERT or REPLACE INTO me(id, token) VALUES (1, :token)");
+            query.bindValue(":token", QString::fromStdString(parent->authService->user->getToken()));
+            query.exec();
+            db.close();
         } catch (std::exception& e) {
             qCritical() << e.what();
         }

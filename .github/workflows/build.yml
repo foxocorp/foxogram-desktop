@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - main
+      - dev
 
 jobs:
   build:
@@ -18,21 +19,34 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@c6c7281365daef91a238e1c2ddce4eaa94a2991d # v4.1.1
+        uses: jurplel/install-qt-action@12aa0336e1e410b3c6dff5e0722547f7a37e8c60 # v4.2.1
         with:
           version: '6.8.0'
+          cache: true
 
       - name: Install Ninja
-        uses: turtlesec-no/get-ninja@3e85fb0044ada1440765803dd87c838edf79def8 # main
+        uses: seanmiddleditch/gha-setup-ninja@3b1f8f94a2f8254bd26914c4ab9474d4f0015f67 # v6
+
+      - name: Run sccache
+        uses: mozilla-actions/sccache-action@7d986dd989559c6ecdb630a3fd2557667be217ad # v0.0.9
+
+      - name: Cache cmake-build
+        uses: actions/cache@v4
+        with:
+          key: cmake-build-${{ runner.os }}-${{ runner.arch }}
+          path: cmake-build
+          restore-keys: cmake-build-${{ runner.os }}-${{ runner.arch }}
 
       - name: Build Foxogram
         shell: pwsh
+        env:
+          SCCACHE_GHA_ENABLED: true
         run: |
           if ($env:RUNNER_OS -eq "Windows") {
             $env:OPENSSL_ROOT_DIR = "C:/Program Files/OpenSSL/"
           }
           
-          make
+          make build-${{ github.ref_name == 'main' && 'main' || github.ref_name == 'dev' && 'dev' || 'dev' }}
 
       - name: Archive Foxogram
         shell: pwsh
@@ -48,7 +62,7 @@ jobs:
           }
 
       - name: Upload Release
-        uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef267fda # v2.2.1
+        uses: softprops/action-gh-release@da05d552573ad5aba039eaac05058a918a7bf631 # v2.2.2
         with:
           name: Foxogram ${{ github.run_id }}
           tag_name: foxogram-${{ github.run_id }}

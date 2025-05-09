@@ -1,16 +1,12 @@
 #include "launcher.h"
-
-namespace Credentials {
-const QString applicationName = "Foxogram";
-const QString organizationName = "Foxocorp";
-const QString applicationVersion = "1.0.0";
-}
+#include <constants.h>
 
 Launcher* Launcher::instance = nullptr;
 
 Launcher::Launcher(int argc, char *argv[]) : _argc(argc), _argv(argv), app(new QApplication(argc, argv))
 {
     setDefaultApplicationCredentials();
+    constants::DBPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/" + constants::DBFilename;
 }
 
 Launcher *Launcher::Create(int argc, char *argv[])

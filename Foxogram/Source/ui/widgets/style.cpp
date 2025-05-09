@@ -134,3 +134,62 @@ QPushButton#continueButton:hover {
 }
 )";
 }
+
+namespace Messenger::Style {
+    const QString leftBarWidgetStyleSheet = R"(
+    #leftBarWidget {
+        background-color: #1e1e1e;
+    }
+    )";
+
+    const QString messengerWidgetStyleSheet = R"(
+    #messengerWidget {
+        background-color: #141414;
+    }
+    )";
+    const QString chatComponentInfoLayout = R"(
+    *[defaultAvatar=true] {
+        image: url(:/ui/icons/messenger/avatar.svg);
+    }
+    #avatar {
+        font: 35px;
+        font-weight: 900;
+    }
+    #chatName {
+        font: bold 16px;
+    }
+    #timeLabel {
+        font: 14px;
+        color: #616161;
+    }
+    #author {
+        font: 16px;
+        color: #b7b7b7;
+    }
+    #message {
+        font: 16px;
+        color: #818181;
+    }
+    )";
+
+    const QString searchBarStyleSheet = R"(
+    #searchField {
+        border-radius: 10px;
+        image-position: left;
+        background-color: #161616;
+        placeholder-text-color: #818181;
+        background-image: url(:/ui/icons/messenger/magnifyingglass.svg);
+        background-repeat: no-repeat;
+        background-origin: content;
+        background-position: left center;
+        padding-left: 16px;
+    }
+    #createButton {
+        image: url(:/ui/icons/messenger/plus.app.svg);
+        background-color: #161616;
+        padding: 12px;
+        border: transparent;
+        border-radius: 10px;
+    }
+    )";
+}

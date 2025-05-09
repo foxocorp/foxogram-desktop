@@ -1,5 +1,5 @@
 #include "signinwidget.h"
-#include "style.h"
+#include "../style.h"
 
 namespace Auth {
 SignInWidget::SignInWidget(AuthWidget *parent) : SignWidgetAbstract(parent)
